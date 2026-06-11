@@ -1,1 +1,178 @@
 
+
+/* Large Screens */
+
+@media (max-width: 1200px) {
+
+  .container {
+    max-width: 1000px;
+  }
+
+}
+
+/* Tablets */
+
+@media (max-width: 992px) {
+
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  h1 {
+    font-size: 3rem !important;
+  }
+
+  h2 {
+    font-size: 2rem !important;
+  }
+
+  .glass-card {
+    padding: 24px !important;
+  }
+
+  #appointments-mgmt .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 2.3rem !important;
+    line-height: 1.4;
+  }
+
+  h2 {
+    font-size: 1.8rem !important;
+  }
+
+  h3 {
+    font-size: 1.3rem !important;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .hero-glow {
+    min-height: auto !important;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .glass-card {
+    padding: 20px !important;
+  }
+
+  .appointment-item {
+    padding: 16px;
+  }
+
+  .appointment-item h4 {
+    font-size: 16px;
+  }
+
+  .appointment-item p {
+    font-size: 13px;
+  }
+
+  button,
+  .btn,
+  a[class*="bg-"] {
+    width: 100%;
+    justify-content: center;
+  }
+
+  form .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  footer {
+    padding: 30px 15px;
+  }
+
+}
+
+/* Small Mobile */
+
+@media (max-width: 576px) {
+
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .glass-card {
+    border-radius: 16px;
+  }
+
+  .appointment-item {
+    text-align: center;
+  }
+
+  .appointment-item span {
+    margin-top: 10px;
+    display: inline-block;
+  }
+
+  .material-symbols-outlined {
+    font-size: 22px !important;
+  }
+
+}
+
+/* Extra Small Devices */
+
+@media (max-width: 400px) {
+
+  h1 {
+    font-size: 1.7rem !important;
+  }
+
+  h2 {
+    font-size: 1.3rem !important;
+  }
+
+  p {
+    font-size: 13px;
+  }
+
+  .glass-card {
+    padding: 15px !important;
+  }
+
+  form input {
+    padding: 12px;
+  }
+
+  button {
+    padding: 12px;
+  }
+
+}
+
+/* Ultra Wide Screens */
+
+@media (min-width: 1600px) {
+
+  .container {
+    max-width: 1400px;
+  }
+
+}
