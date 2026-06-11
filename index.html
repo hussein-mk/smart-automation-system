@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>عدل القانونية | بروسيس للمحاماة والاستشارات القانونية</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        surface: "#0b1326",
+                        background: "#0b1326",
+                        primary: "#89ceff",
+                        secondary: "#4edea3",
+                        tertiary: "#c0c1ff",
+                        error: "#ffb4ab",
+                        "surface-container": "#171f33",
+                        "surface-container-highest": "#2d3449",
+                        "surface-container-low": "#131b2e",
+                        "surface-container-high": "#222a3d",
+                        outline: "#88929b",
+                        "outline-variant": "#3e4850",
+                        "on-surface": "#dae2fd",
+                        "on-surface-variant": "#bec8d2",
+                        "primary-container": "#0ea5e9",
+                        "on-primary-container": "#003751"
+                    }
+                }
+            }
+        };
+    </script>
+
+</head>
+
+<body class="bg-background text-on-surface">
+
+    <main>
+
+        <!-- HERO -->
+        <section class="relative min-h-[80vh] flex items-center justify-center py-24 hero-glow overflow-hidden">
+
+            <div class="container mx-auto px-6 text-center z-10">
+
+                <div class="flex justify-center mb-6">
+                    <div class="relative">
+                        <span class="material-symbols-outlined text-[120px] text-primary drop-shadow-[0_0_25px_rgba(137,206,255,0.5)]">
+                            gavel
+                        </span>
+                    </div>
+                </div>
+
+                <h1 class="hero-title text-[80px] font-bold bg-gradient-to-l from-primary to-white bg-clip-text text-transparent mb-6">
+                    عدل القانونية
+                </h1>
+
+                <div class="inline-block px-6 py-2 bg-primary/10 border border-primary/20 rounded-full mb-8">
+                    <span class="text-primary flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[16px]">verified</span>
+                        نخبة من المستشارين القانونيين في خدمتكم
+                    </span>
+                </div>
+
+                <p class="max-w-3xl mx-auto text-lg text-on-surface-variant mb-10">
+                    نقدم خدمات قانونية شاملة تجمع بين الخبرة العميقة والابتكار لضمان حماية مصالحكم وتحقيق تطلعاتكم.
+                </p>
+
+                <a href="#appointments-mgmt"
+                    class="inline-flex items-center gap-2 bg-primary text-black px-8 py-4 rounded-lg font-bold hover:scale-105 transition">
+                    <span class="material-symbols-outlined">event_available</span>
+                    احجز استشارة قانونية
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- STATISTICS -->
+
+        <section class="py-20">
+
+            <div class="container mx-auto px-6">
+
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold">
+                        الإحصائيات العامة
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <div class="glass-card rounded-xl p-8">
+                        <h3 class="text-5xl font-bold mb-2">1,284</h3>
+                        <p>إجمالي القضايا</p>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-8">
+                        <h3 class="text-5xl font-bold mb-2">850</h3>
+                        <p>الموكلون النشطون</p>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-8">
+                        <h3 class="text-5xl font-bold mb-2">320</h3>
+                        <p>المهام القانونية</p>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-8">
+                        <h3 class="text-5xl font-bold mb-2">12</h3>
+                        <p>مواعيد جلسات قادمة</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- APPOINTMENTS -->
+
+        <section id="appointments-mgmt" class="py-20">
+
+            <div class="container mx-auto px-6">
+
+                <div class="grid lg:grid-cols-12 gap-8">
+
+                    <!-- FORM -->
+
+                    <div class="lg:col-span-5">
+
+                        <div class="glass-card rounded-2xl p-8">
+
+                            <h2 class="text-2xl font-bold mb-6">
+                                تسجيل موعد جديد
+                            </h2>
+
+                            <form>
+
+                                <div class="mb-4">
+                                    <label class="block mb-2">اسم الموكل</label>
+                                    <input type="text" class="w-full rounded-lg p-3 bg-surface-container-highest">
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="block mb-2">رقم الجوال</label>
+                                    <input type="tel" class="w-full rounded-lg p-3 bg-surface-container-highest">
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="block mb-2">البريد الإلكتروني</label>
+                                    <input type="email" class="w-full rounded-lg p-3 bg-surface-container-highest">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+
+                                    <div>
+                                        <label class="block mb-2">التاريخ</label>
+                                        <input type="date" class="w-full rounded-lg p-3 bg-surface-container-highest">
+                                    </div>
+
+                                    <div>
+                                        <label class="block mb-2">الوقت</label>
+                                        <input type="time" class="w-full rounded-lg p-3 bg-surface-container-highest">
+                                    </div>
+
+                                </div>
+
+                                <button type="submit"
+                                    class="w-full bg-primary-container py-4 rounded-lg font-bold">
+                                    تسجيل الموعد
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                    <!-- APPOINTMENTS LIST -->
+
+                    <div class="lg:col-span-7">
+
+                        <div class="glass-card rounded-2xl p-8">
+
+                            <h2 class="text-2xl font-bold mb-6">
+                                مواعيد اليوم
+                            </h2>
+
+                            <div id="appointmentsList">
+
+                                <div class="glass-card p-5 rounded-xl mb-4">
+                                    <h4>مؤسسة الحلول الرقمية</h4>
+                                    <p>09:30 صباحاً</p>
+                                </div>
+
+                                <div class="glass-card p-5 rounded-xl mb-4">
+                                    <h4>سارة الكويتي</h4>
+                                    <p>11:15 صباحاً</p>
+                                </div>
+
+                                <div class="glass-card p-5 rounded-xl">
+                                    <h4>شركة الاتصالات المتكاملة</h4>
+                                    <p>02:00 مساءً</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="py-8 border-t border-gray-700">
+
+        <div class="container mx-auto px-6 text-center">
+
+            <p>
+                © 2026 عدل القانونية - جميع الحقوق محفوظة
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- JS Files -->
+
+    <script src="assets/js/observer.js"></script>
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>
