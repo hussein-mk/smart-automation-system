@@ -122,7 +122,7 @@
                         "headline-lg": ["Noto Kufi Arabic", "Be Vietnam Pro"],
                         "body-md": ["Noto Kufi Arabic", "Be Vietnam Pro"],
                         "body-lg": ["Noto Kufi Arabic", "Be Vietnam Pro"],
-                        "label-sm": ["Noto Kufi Arabic", "Be Vietnam Pro"],
+                        "label-sm": ["Label-sm", "Noto Kufi Arabic", "Be Vietnam Pro"],
                         "label-md": ["Noto Kufi Arabic", "Be Vietnam Pro"],
                         "display-lg": ["Noto Kufi Arabic", "Be Vietnam Pro"],
                         "headline-md": ["Noto Kufi Arabic", "Be Vietnam Pro"]
@@ -239,11 +239,11 @@
 <div class="grid grid-cols-2 gap-md">
 <div class="flex flex-col gap-xs">
 <label class="text-label-sm text-on-surface-variant">تاريخ الموعد</label>
-<input id="appointmentDate" name="appointmentDate" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center" type="text" placeholder="YYYY-MM-DD" value="2026-06-15">
+<input id="appointmentDate" name="appointmentDate" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center cursor-pointer text-right w-full block" type="date" value="2026-06-15">
 </div>
 <div class="flex flex-col gap-xs">
 <label class="text-label-sm text-on-surface-variant">وقت الموعد</label>
-<input id="appointmentTime" name="appointmentTime" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center" type="text" placeholder="HH:MM" value="14:30">
+<input id="appointmentTime" name="appointmentTime" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center cursor-pointer text-right w-full block" type="time" value="14:30">
 </div>
 </div>
 <button class="w-full bg-primary text-on-primary font-headline-sm py-md rounded-lg flex justify-center items-center gap-base hover:scale-105 transition-all shadow-lg shadow-primary/20 cursor-pointer" type="submit">
@@ -333,7 +333,7 @@
         };
 
         // استبدل الرابط أدناه برابط الـ Production Webhook الخاص بك من n8n
-        const webhookUrl = 'https://husseinmk.app.n8n.cloud/webhook/02444acc-60af-4ae9-9d14-46600d438d66';
+        const webhookUrl = 'https://hussen98.app.n8n.cloud/webhook/4d552f32-16a7-4d84-8642-2e4b70000595';
 
         try {
             const response = await fetch(webhookUrl, {
