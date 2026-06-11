@@ -1,1 +1,373 @@
+/* ===================================
+   ProSys Legal
+   Main Stylesheet
+=================================== */
 
+:root {
+
+  --bg-color: #0b1326;
+  --card-bg: #171f33;
+  --card-border: #2d3449;
+
+  --primary: #89ceff;
+  --primary-dark: #0ea5e9;
+
+  --secondary: #4edea3;
+
+  --text-main: #dae2fd;
+  --text-muted: #9aa7c2;
+
+  --danger: #ff6b6b;
+
+  --shadow:
+    0 10px 30px rgba(0,0,0,.25);
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+
+  scroll-behavior: smooth;
+
+}
+
+body {
+
+  font-family:
+    'Noto Kufi Arabic',
+    'Be Vietnam Pro',
+    sans-serif;
+
+  background: var(--bg-color);
+
+  color: var(--text-main);
+
+  overflow-x: hidden;
+
+  line-height: 1.8;
+
+}
+
+/* ===================================
+   Scrollbar
+=================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #101827;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d3449;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* ===================================
+   Hero Glow
+=================================== */
+
+.hero-glow {
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(14,165,233,.15),
+      transparent 70%
+    );
+
+}
+
+/* ===================================
+   Cards
+=================================== */
+
+.glass-card {
+
+  background: var(--card-bg);
+
+  border: 1px solid var(--card-border);
+
+  border-radius: 20px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition: .35s ease;
+
+  box-shadow: var(--shadow);
+
+}
+
+.glass-card:hover {
+
+  transform: translateY(-6px);
+
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 25px rgba(137,206,255,.15);
+
+}
+
+/* ===================================
+   Statistics Cards
+=================================== */
+
+.glass-card h3 {
+
+  line-height: 1;
+
+}
+
+.glass-card p {
+
+  color: var(--text-muted);
+
+}
+
+/* ===================================
+   Form
+=================================== */
+
+form label {
+
+  color: var(--text-main);
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+}
+
+form input {
+
+  width: 100%;
+
+  border: 1px solid #334155;
+
+  background: #111827;
+
+  color: white;
+
+  border-radius: 12px;
+
+  padding: 14px;
+
+  outline: none;
+
+  transition: .3s;
+
+}
+
+form input:focus {
+
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(137,206,255,.15);
+
+}
+
+/* ===================================
+   Buttons
+=================================== */
+
+button,
+.btn {
+
+  cursor: pointer;
+
+  transition: .3s ease;
+
+}
+
+button:hover,
+.btn:hover {
+
+  transform: translateY(-2px);
+
+}
+
+/* ===================================
+   Appointment List
+=================================== */
+
+.appointment-item {
+
+  background: rgba(255,255,255,.03);
+
+  border: 1px solid rgba(255,255,255,.06);
+
+  border-radius: 16px;
+
+  padding: 20px;
+
+  transition: .3s ease;
+
+}
+
+.appointment-item:hover {
+
+  border-color: var(--primary);
+
+  background:
+    rgba(137,206,255,.05);
+
+}
+
+.appointment-item h4 {
+
+  font-size: 18px;
+
+  margin-bottom: 6px;
+
+  color: white;
+
+}
+
+.appointment-item p {
+
+  color: var(--text-muted);
+
+  margin-bottom: 10px;
+
+}
+
+.appointment-item span {
+
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(137,206,255,.15);
+
+  color: var(--primary);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+}
+
+/* ===================================
+   Footer
+=================================== */
+
+footer {
+
+  color: var(--text-muted);
+
+  background: transparent;
+
+}
+
+/* ===================================
+   Utility Classes
+=================================== */
+
+.text-primary {
+
+  color: var(--primary);
+
+}
+
+.bg-primary {
+
+  background: var(--primary);
+
+}
+
+.text-muted {
+
+  color: var(--text-muted);
+
+}
+
+.section-title {
+
+  text-align: center;
+
+  margin-bottom: 50px;
+
+  font-size: 40px;
+
+  font-weight: 700;
+
+}
+
+/* ===================================
+   Animation Helpers
+=================================== */
+
+.fade-in {
+
+  opacity: 0;
+
+  transform: translateY(20px);
+
+}
+
+.fade-in.show {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
+
+/* ===================================
+   Selection
+=================================== */
+
+::selection {
+
+  background: var(--primary);
+
+  color: #000;
+
+}
+
+/* ===================================
+   Images
+=================================== */
+
+img {
+
+  max-width: 100%;
+
+  display: block;
+
+}
+
+/* ===================================
+   Links
+=================================== */
+
+a {
+
+  text-decoration: none;
+
+}
+
+a:hover {
+
+  opacity: .9;
+
+}
