@@ -1,1 +1,292 @@
+/* ===================================
+   ProSys Legal
+   Animations
+=================================== */
 
+/* Fade Up */
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.fade-up {
+
+  opacity: 0;
+
+  animation:
+    fadeUp .8s ease forwards;
+
+}
+
+/* Fade In */
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+.fade-in {
+
+  opacity: 0;
+
+  animation:
+    fadeIn 1s ease forwards;
+
+}
+
+/* Slide Right */
+
+@keyframes slideRight {
+
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
+
+.slide-right {
+
+  animation:
+    slideRight .8s ease forwards;
+
+}
+
+/* Slide Left */
+
+@keyframes slideLeft {
+
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+}
+
+.slide-left {
+
+  animation:
+    slideLeft .8s ease forwards;
+
+}
+
+/* Zoom In */
+
+@keyframes zoomIn {
+
+  from {
+    opacity: 0;
+    transform: scale(.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+.zoom-in {
+
+  animation:
+    zoomIn .6s ease forwards;
+
+}
+
+/* Float Effect */
+
+@keyframes floating {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
+.float {
+
+  animation:
+    floating 4s ease-in-out infinite;
+
+}
+
+/* Pulse */
+
+@keyframes pulseGlow {
+
+  0% {
+
+    box-shadow:
+      0 0 0 rgba(137,206,255,0);
+
+  }
+
+  50% {
+
+    box-shadow:
+      0 0 25px rgba(137,206,255,.35);
+
+  }
+
+  100% {
+
+    box-shadow:
+      0 0 0 rgba(137,206,255,0);
+
+  }
+
+}
+
+.pulse {
+
+  animation:
+    pulseGlow 2s infinite;
+
+}
+
+/* Hero Icon */
+
+.hero-icon {
+
+  animation:
+    floating 5s ease-in-out infinite;
+}
+
+/* Hover Lift */
+
+.hover-lift {
+
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+
+}
+
+.hover-lift:hover {
+
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.25);
+
+}
+
+/* Buttons */
+
+.btn-animated {
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+.btn-animated::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.25),
+      transparent
+    );
+
+  transition: .6s;
+
+}
+
+.btn-animated:hover::before {
+
+  left: 100%;
+
+}
+
+/* Delays */
+
+.delay-1 {
+  animation-delay: .2s;
+}
+
+.delay-2 {
+  animation-delay: .4s;
+}
+
+.delay-3 {
+  animation-delay: .6s;
+}
+
+.delay-4 {
+  animation-delay: .8s;
+}
+
+.delay-5 {
+  animation-delay: 1s;
+}
+
+/* Observer Animation */
+
+.reveal {
+
+  opacity: 0;
+
+  transform: translateY(40px);
+
+  transition:
+    opacity .8s ease,
+    transform .8s ease;
+
+}
+
+.reveal.active {
+
+  opacity: 1;
+
+  transform: translateY(0);
+
+}
