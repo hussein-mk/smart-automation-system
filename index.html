@@ -279,14 +279,19 @@
 </div>
 </div>
 </div>
+<!-- Bottom: Tomorrow's Summary -->
 <div class="mt-xl glass-card rounded-2xl p-xl border-outline-variant/30" style="opacity: 1; transform: translateY(0px);">
+<!-- Header Row -->
 <div class="flex items-center justify-between mb-md"><h3 class="font-headline-md text-on-surface flex items-center gap-sm">
       ملخص مواعيد الغد
       <span class="material-symbols-outlined text-primary">calendar_month</span>
 </h3>
 <p class="text-label-sm text-on-surface-variant">27 نوفمبر 2024</p></div>
+<!-- Divider -->
 <div class="h-[1px] bg-outline-variant/30 mb-xl"></div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter"><div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
+<!-- Appointments Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter"><!-- Appointment 1 -->
+<div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="text-right">
 <h4 class="font-headline-sm text-on-surface">شركة الابتكار التقني</h4>
 <p class="text-label-sm text-on-surface-variant">قضية تجارية</p>
@@ -300,6 +305,7 @@
 </div>
 </div>
 </div>
+<!-- Appointment 2 -->
 <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="text-right">
 <h4 class="font-headline-sm text-on-surface">أحمد المنصور</h4>
@@ -314,6 +320,7 @@
 </div>
 </div>
 </div>
+<!-- Appointment 3 -->
 <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="text-right">
 <h4 class="font-headline-sm text-on-surface">مجموعة التجزئة الدولية</h4>
@@ -369,7 +376,6 @@ async function loadAppointments() {
         }
 
         appointments.forEach((item, index) => {
-            // توزيع الشارات والألوان بشكل منسق يعكس التصميم الأصلي
             let statusText = "قادم";
             let statusClass = "bg-primary/20 text-primary";
             if (index === 0) {
