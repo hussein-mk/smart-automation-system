@@ -272,6 +272,15 @@
 <label class="text-label-sm text-on-surface-variant">البريد الإلكتروني</label>
 <input id="clientEmail" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="example@prosys.com" style="text-align: right;" type="email">
 </div>
+<div class="flex flex-col gap-xs">
+    <label class="text-label-sm text-on-surface-variant">موضوع الجلسة</label>
+    <input
+        id="sessionSubject"
+        required
+        class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none"
+        placeholder="مثال: استشارة تجارية، نزاع عمالي، صياغة عقد"
+        type="text">
+</div>
 <div class="grid grid-cols-2 gap-md">
 <div class="flex flex-col gap-xs">
 <label class="text-label-sm text-on-surface-variant">تاريخ الموعد</label>
@@ -460,6 +469,7 @@
                     const statusText = index === 0 ? "نشط" : "قادم";
                     const statusBadge = index === 0 ? "bg-secondary/20 text-secondary" : "bg-primary/20 text-primary";
                     const formattedTime = formatTimeWithPeriod(item.Time);
+                    const subject = item.Subject || item.subject || 'استشارة قانونية';
 
                     container.innerHTML += `
                         <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 flex items-center justify-between relative">
@@ -467,7 +477,8 @@
                             <div class="flex items-center gap-lg">
                                 <div>
                                     <h4 class="font-headline-sm text-on-surface font-bold">${item.Name || 'مستشار قانوني'}</h4>
-                                    <p class="text-label-sm text-on-surface-variant">${item.Email || 'لا يوجد تفاصيل إضافية'}</p>
+                                    <p class="text-label-sm text-primary font-semibold">${subject}</p>
+                                    <p class="text-label-sm text-on-surface-variant">${item.Email || 'لا يوجد بريد إلكتروني'}</p>
                                 </div>
                             </div>
                             <div class="text-right">
@@ -486,13 +497,14 @@
             } else {
                 tomorrowAppointments.forEach(item => {
                     const formattedTime = formatTimeWithPeriod(item.Time);
-                    
+                    const subject = item.Subject || item.subject || 'استشارة قانونية';
                     tomorrowGrid.innerHTML += `
                         <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative">
                             <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
                             <div class="text-right">
                                 <h4 class="font-headline-sm text-on-surface font-bold">${item.Name}</h4>
-                                <p class="text-label-sm text-on-surface-variant truncate max-w-[150px]">${item.Email || 'استشارة قانونية'}</p>
+                                <p class="text-label-sm text-primary font-semibold">${subject}</p>
+                                <p class="text-label-sm text-on-surface-variant truncate max-w-[150px]">${item.Email || ''}</p>
                             </div>
                             <div class="flex items-center gap-md">
                                 <div class="text-right">
@@ -531,6 +543,7 @@
             email: document.getElementById('clientEmail').value,
             date: document.getElementById('appointmentDate').value,
             time: document.getElementById('appointmentTime').value,
+            subject: document.getElementById('sessionSubject').value,
             submittedAt: new Date().toISOString()
         };
 
@@ -563,3 +576,6 @@
     });
 </script>
 </body></html>
+
+
+tomorrowAppointments.forEach
