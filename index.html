@@ -1,7 +1,7 @@
 <!DOCTYPE html><html class="dark scroll-smooth" dir="rtl" lang="ar" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>عدل للمحاماة والاستشارات القانونية</title>
+<title>ProSys Legal - بروسيس للمحاماة والاستشارات القانونية</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Noto+Kufi+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
@@ -143,7 +143,6 @@
 </head>
 <body class="bg-background text-on-surface">
 <main>
-<!-- Hero Section -->
 <section class="relative min-h-[80vh] flex items-center justify-center py-xl hero-glow overflow-hidden">
 <div class="container mx-auto px-margin text-center z-10">
 <div class="flex justify-center mb-md">
@@ -151,7 +150,7 @@
 <span class="material-symbols-outlined text-[120px] text-primary opacity-100 drop-shadow-[0_0_25px_rgba(137,206,255,0.5)] transition-all">gavel</span>
 <div class="absolute inset-0 bg-primary blur-2xl opacity-20 rounded-full"></div>
 </div>
-</div><h2 class="font-display-lg mb-md leading-tight text-[64px] lg:text-[72px] font-bold bg-gradient-to-l from-primary to-[#c9e6ff] bg-clip-text text-transparent drop-shadow-lg">عدل للمحاماة والاستشارات القانونية</h2>
+</div><h2 class="font-display-lg mb-md leading-tight text-[80px] font-bold bg-gradient-to-l from-primary to-[#c9e6ff] bg-clip-text text-transparent drop-shadow-lg">عدل القانونية</h2>
 <div class="inline-block px-md py-xs bg-primary/10 border border-primary/20 rounded-full mb-lg mt-md">
 <span class="text-primary font-label-sm text-label-sm flex items-center gap-xs">
 <span class="material-symbols-outlined text-[16px]">verified</span>
@@ -168,14 +167,12 @@
                 </a>
 </div>
 </div>
-<!-- Decorative abstract lines -->
 <div class="absolute inset-0 pointer-events-none opacity-20">
 <div class="absolute top-1/4 right-10 w-64 h-64 border border-primary/30 rounded-full blur-3xl"></div>
 <div class="absolute bottom-1/4 left-10 w-96 h-96 border border-secondary/30 rounded-full blur-3xl"></div>
 </div>
 </section>
 
-<!-- Statistics Cards Section -->
 <section class="bg-surface py-sm">
 <div class="container mx-auto px-margin">
 <div class="text-center mb-xl">
@@ -216,11 +213,9 @@
 </div>
 </section>
 
-<!-- Appointment Form Section -->
 <section class="py-xl bg-surface-container-low" id="appointments-mgmt">
 <div class="container mx-auto px-margin">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-<!-- Register New Appointment Form -->
 <div class="lg:col-span-5">
 <div id="booking" class="glass-card rounded-2xl p-xl h-full border-primary/20 relative scroll-mt-6" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="flex items-center justify-between mb-md">
@@ -253,7 +248,7 @@
 <input id="appointmentTime" name="appointmentTime" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center cursor-pointer text-right w-full block" type="time" value="14:30">
 </div>
 </div>
-<button class="w-full bg-primary text-on-primary px-xl py-md rounded-lg font-headline-sm text-headline-sm hover:scale-105 transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20 cursor-pointer" type="submit">
+<button class="w-full bg-primary text-on-primary font-headline-sm py-md rounded-lg flex justify-center items-center gap-base hover:scale-105 transition-all shadow-lg shadow-primary/20 cursor-pointer" type="submit">
               تأكيد تسجيل الموعد
               <span class="material-symbols-outlined">person_add</span>
 </button>
@@ -261,16 +256,17 @@
 </div>
 </div>
 
-<!-- Today's Appointments -->
 <div class="lg:col-span-7">
 <div class="glass-card rounded-2xl p-xl h-full" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="flex items-center justify-between mb-xl"><h3 class="font-headline-md text-on-surface flex items-center gap-sm">
               مواعيد اليوم
               <span class="material-symbols-outlined text-secondary">list_alt</span>
 </h3>
-<!-- التحديث هنا: تم حذف زر الفلترة والابقاء على زر التحديث مفعلاً بذكاء -->
 <div class="flex items-center gap-md">
-<button onclick="loadAppointments()" class="w-10 h-10 bg-surface-container-highest rounded flex items-center justify-center hover:bg-surface-container-highest/80 hover:text-primary transition-all cursor-pointer" title="تحديث القائمة">
+<div class="w-10 h-10 bg-surface-container-highest rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">format_list_bulleted</span>
+</div>
+<button onclick="loadAppointments()" class="w-10 h-10 bg-surface-container-highest rounded flex items-center justify-center hover:bg-surface-container-highest/80 transition-all cursor-pointer" title="تحديث القائمة">
 <span class="material-symbols-outlined text-on-surface-variant">sync</span>
 </button>
 </div></div>
@@ -287,7 +283,6 @@
 </div>
 </div>
 
-<!-- Tomorrow's Summary Section -->
 <div class="mt-xl glass-card rounded-2xl p-xl border-outline-variant/30" style="opacity: 1; transform: translateY(0px);">
 <div class="flex items-center justify-between mb-md"><h3 class="font-headline-md text-on-surface flex items-center gap-sm">
       ملخص مواعيد الغد
@@ -296,7 +291,6 @@
 <p class="text-label-sm text-on-surface-variant">27 نوفمبر 2024</p></div>
 <div class="h-[1px] bg-outline-variant/30 mb-xl"></div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Appointment 1 -->
 <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="text-right">
 <h4 class="font-headline-sm text-on-surface">شركة الابتكار التقني</h4>
@@ -311,7 +305,6 @@
 </div>
 </div>
 </div>
-<!-- Appointment 2 -->
 <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="text-right">
 <h4 class="font-headline-sm text-on-surface">أحمد المنصور</h4>
@@ -326,7 +319,6 @@
 </div>
 </div>
 </div>
-<!-- Appointment 3 -->
 <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="text-right">
 <h4 class="font-headline-sm text-on-surface">مجموعة التجزئة الدولية</h4>
@@ -348,6 +340,7 @@
 </main>
 
 <script>
+    // Reveal effects on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -363,12 +356,9 @@
         observer.observe(card);
     });
 
+    // دالة جلب المواعيد وتحديثها لتطابق التصميم الأصلي الأنيق بدلاً من التنسيق العشوائي المبسط
     async function loadAppointments() {
         const container = document.getElementById("appointmentsListContainer");
-        // إضافة تأثير دوران الأيقونة أثناء جلب البيانات لإعطاء تجربة مستخدم ديناميكية
-        const syncIcon = document.querySelector('button[onclick="loadAppointments()"] span');
-        if(syncIcon) syncIcon.classList.add('animate-spin');
-
         try {
             const response = await fetch(
                 "https://hussen98.app.n8n.cloud/webhook/4f5961ef-c19b-4135-96e5-7fcfe03ae22e"
@@ -387,7 +377,9 @@
                 return;
             }
 
+            // رسم كل بطاقة بنفس هيكلية الـ HTML للتصميم الأصلي المحذوف
             appointments.forEach((item, index) => {
+                // تبديل تلقائي بين شارة "نشط" و "قادم" لتعطي حركية للتصميم أو حسب الرغبة
                 const badgeColor = index === 0 ? "bg-secondary/20 text-secondary" : "bg-primary/20 text-primary";
                 const badgeText = index === 0 ? "نشط" : "قادم";
 
@@ -414,16 +406,16 @@
             console.error(error);
             container.innerHTML = `
                 <div class="p-lg text-center text-error">
-                    فشل في تحميل المواعيد من النظام
+                    فشل في تحميل المواعيد المباشرة من النظام
                 </div>
             `;
-        } finally {
-            if(syncIcon) syncIcon.classList.remove('animate-spin');
         }
     }
 
+    // استدعاء الدالة تلقائياً بمجرد اكتمال تحميل الصفحة
     document.addEventListener("DOMContentLoaded", loadAppointments);
 
+    // كود JavaScript لربط الفورم بـ n8n
     document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -454,7 +446,7 @@
             if (response.ok) {
                 alert('تم تسجيل الموعد بنجاح وجدولة التذكير!');
                 document.getElementById('appointmentForm').reset();
-                loadAppointments();
+                loadAppointments(); // إعادة تحميل القائمة فوراً
             } else {
                 alert('حدث خطأ أثناء تسجيل الموعد، يرجى المحاولة لاحقاً.');
             }
@@ -471,7 +463,7 @@
 <footer class="py-lg mt-xl border-t border-outline-variant/30">
 <div class="container mx-auto px-margin text-center">
 <p class="text-label-sm text-on-surface-variant opacity-70">
-      © 2026 عدل للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة.
+      © 2026 عدل القانونية. جميع الحقوق محفوظة.
     </p>
 </div>
 </footer>
