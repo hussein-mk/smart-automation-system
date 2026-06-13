@@ -408,6 +408,22 @@
         }
     }
 
+    // دالة مساعدة لتنسيق الوقت من صيغة 24 ساعة إلى صيغة 12 ساعة مع إضافة (صباحاً/مساءً)
+    function formatTimeWithPeriod(timeString) {
+        if (!timeString) return '00:00 صباحاً';
+        const parts = timeString.split(':');
+        if (parts.length < 2) return timeString;
+        
+        let hour = parseInt(parts[0], 10);
+        const min = parts[1];
+        
+        const period = hour >= 12 ? 'مساءً' : 'صباحاً';
+        let displayHour = hour % 12;
+        displayHour = displayHour ? displayHour : 12;
+        
+        return `${String(displayHour).padStart(2, '0')}:${min} ${period}`;
+    }
+
     async function loadAppointments() {
         const container = document.getElementById("appointmentsListContainer");
         const tomorrowGrid = document.getElementById("tomorrowAppointmentsGrid");
@@ -443,6 +459,7 @@
                 todayAppointments.forEach((item, index) => {
                     const statusText = index === 0 ? "نشط" : "قادم";
                     const statusBadge = index === 0 ? "bg-secondary/20 text-secondary" : "bg-primary/20 text-primary";
+                    const formattedTime = formatTimeWithPeriod(item.Time);
 
                     container.innerHTML += `
                         <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 flex items-center justify-between relative">
@@ -456,7 +473,7 @@
                             <div class="text-right">
                                 <span class="px-md py-0.5 ${statusBadge} rounded-full text-[10px] font-bold">${statusText}</span>
                                 <p class="text-label-md text-on-surface mt-sm" dir="rtl">
-                                    <span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${item.Time || '00:00'}
+                                    <span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${formattedTime}
                                 </p>
                             </div>
                         </div>
@@ -468,7 +485,8 @@
                 tomorrowGrid.innerHTML = `<p class="text-center text-on-surface-variant py-md col-span-3">لا توجد مواعيد مسجلة للغد.</p>`;
             } else {
                 tomorrowAppointments.forEach(item => {
-                    // تقديم الأيقونة لتكون قبل النص داخل كارد مواعيد الغد أيضاً
+                    const formattedTime = formatTimeWithPeriod(item.Time);
+                    
                     tomorrowGrid.innerHTML += `
                         <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative">
                             <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
@@ -477,10 +495,10 @@
                                 <p class="text-label-sm text-on-surface-variant truncate max-w-[150px]">${item.Email || 'استشارة قانونية'}</p>
                             </div>
                             <div class="flex items-center gap-md">
-                                <div class="text-left">
-                                    <span class="px-md py-0.5 bg-primary/10 text-primary rounded-full text-[12px] font-bold">قادم</span>
-                                    <p class="text-label-md text-on-surface mt-xs flex items-center gap-xs justify-end" dir="rtl">
-                                        <span class="material-symbols-outlined text-[16px] opacity-70">schedule</span> ${item.Time || '00:00'}
+                                <div class="text-right">
+                                    <span class="px-md py-0.5 bg-primary/20 text-primary rounded-full text-[10px] font-bold">قادم</span>
+                                    <p class="text-label-md text-on-surface mt-sm" dir="rtl">
+                                        <span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${formattedTime}
                                     </p>
                                 </div>
                             </div>
@@ -505,7 +523,6 @@
         
         const submitButton = this.querySelector('button[type="submit"]');
         submitButton.disabled = true;
-        // الحفاظ على الأيقونة قبل النص حتى أثناء التحميل
         submitButton.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> جاري إرسال الطلب...';
 
         const formData = {
