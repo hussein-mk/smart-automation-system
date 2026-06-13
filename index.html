@@ -342,6 +342,8 @@
 </footer>
 
 <script>
+    let loadedAppointments = [];
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -351,23 +353,73 @@
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.glass-card').forEach(card => {
-        card.style.opacity = '0.9';
-        card.style.transform = 'translateY(10px)';
-        observer.observe(card);
-    });
+    function initAnimations() {
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.style.opacity = '0.9';
+            card.style.transform = 'translateY(10px)';
+            observer.observe(card);
+        });
+    }
 
-    function populateTimeDropdown() {
+    function formatTimeWithPeriod(timeString) {
+        if (!timeString) return '00:00 صباحاً';
+        const parts = timeString.split(':');
+        if (parts.length < 2) return timeString;
+        let hour = parseInt(parts[0], 10);
+        const min = parts[1];
+        const period = hour >= 12 ? 'مساءً' : 'صباحاً';
+        let displayHour = hour % 12;
+        displayHour = displayHour ? displayHour : 12;
+        return `${String(displayHour).padStart(2, '0')}:${min} ${period}`;
+    }
+
+    // دالة الفلترة المحدثة
+    function populateTimeDropdown(selectedDate = "") {
         const select = document.getElementById('appointmentTime');
+        const dateToCheck = selectedDate || document.getElementById('appointmentDate').value;
+        const now = new Date();
+        const todayStr = now.toISOString().split('T')[0];
+        
+        const reservedTimes = loadedAppointments
+            .filter(app => app.Date === dateToCheck)
+            .map(app => app.Time);
+
         select.innerHTML = '';
         
-        const startHour = 8;
+        // تحديد وقت البداية بشكل منطقي
+        let startHour = 8;
+        let startMin = 0;
+
+        // المنطق الجديد: إذا كان التاريخ المختار هو اليوم، ابدأ من الآن
+        if (dateToCheck === todayStr) {
+            startHour = now.getHours();
+            const currentMin = now.getMinutes();
+            if (currentMin > 30) {
+                startHour++;
+                startMin = 0;
+            } else if (currentMin > 0) {
+                startMin = 30;
+            } else {
+                startMin = 0;
+            }
+            // ضمان عدم تجاوز ساعات العمل
+            if (startHour < 8) startHour = 8;
+        } else {
+            // إذا كان تاريخاً مستقبلياً، ابدأ من 8 صباحاً
+            startHour = 8;
+            startMin = 0;
+        }
+
         const endHour = 22;
         
         for (let hour = startHour; hour < endHour; hour++) {
-            for (let min of ['00', '30']) {
+            for (let min of [0, 30]) {
+                if (hour === startHour && min < startMin) continue;
+
                 const hStr = String(hour).padStart(2, '0');
-                const timeValue = `${hStr}:${min}`;
+                const mStr = String(min).padStart(2, '0');
+                const timeValue = `${hStr}:${mStr}`;
+                const isReserved = reservedTimes.includes(timeValue);
                 
                 const period = hour >= 12 ? 'مساءً' : 'صباحاً';
                 let displayHour = hour % 12;
@@ -376,61 +428,33 @@
                 const option = document.createElement('option');
                 option.value = timeValue;
                 option.className = "bg-[#171f33] text-on-surface";
-                option.textContent = `${displayHour}:${min} ${period}`;
+                option.textContent = `${displayHour}:${mStr} ${period}`;
+                
+                if (isReserved) {
+                    option.disabled = true;
+                    option.textContent += ' (محجوز)';
+                    option.style.color = '#718096';
+                }
                 select.appendChild(option);
             }
         }
     }
 
     function initDateTimePickers() {
-        populateTimeDropdown();
-        
         const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const defaultDate = `${year}-${month}-${day}`;
+        const defaultDate = now.toISOString().split('T')[0];
 
         flatpickr("#appointmentDate", {
             locale: "ar",
             dateFormat: "Y-m-d",
             defaultDate: defaultDate,
-            disableMobile: "true"
+            disableMobile: "true",
+            onChange: function(selectedDates, dateStr) {
+                populateTimeDropdown(dateStr);
+            }
         });
 
-        const currentHour = now.getHours();
-        const currentMinutes = now.getMinutes();
-        let targetHour = currentHour;
-        let targetMin = "00";
-
-        if (currentMinutes > 30) {
-            targetHour += 1;
-            targetMin = "00";
-        } else if (currentMinutes > 0) {
-            targetMin = "30";
-        }
-
-        const targetTimeStr = `${String(targetHour).padStart(2, '0')}:${targetMin}`;
-        const timeSelect = document.getElementById('appointmentTime');
-        if (timeSelect.querySelector(`option[value="${targetTimeStr}"]`)) {
-            timeSelect.value = targetTimeStr;
-        }
-    }
-
-    // دالة مساعدة لتنسيق الوقت من صيغة 24 ساعة إلى صيغة 12 ساعة مع إضافة (صباحاً/مساءً)
-    function formatTimeWithPeriod(timeString) {
-        if (!timeString) return '00:00 صباحاً';
-        const parts = timeString.split(':');
-        if (parts.length < 2) return timeString;
-        
-        let hour = parseInt(parts[0], 10);
-        const min = parts[1];
-        
-        const period = hour >= 12 ? 'مساءً' : 'صباحاً';
-        let displayHour = hour % 12;
-        displayHour = displayHour ? displayHour : 12;
-        
-        return `${String(displayHour).padStart(2, '0')}:${min} ${period}`;
+        populateTimeDropdown(defaultDate);
     }
 
     async function loadAppointments() {
@@ -439,12 +463,14 @@
         const tomorrowLabel = document.getElementById("tomorrowDateLabel");
 
         container.innerHTML = `<p class="text-center text-on-surface-variant py-md">جاري تحديث مواعيد اليوم...</p>`;
-        tomorrowGrid.innerHTML = `<p class="text-center text-on-surface-variant py-md col-span-3">جاري تحميل مواعيد الغد...</p>`;
-
+        tomorrowGrid.innerHTML = `<p class="text-center text-on-surface-variant py-md col-span-3">جاري تحديث مواعيد الغد...</p>`;
+        
         try {
             const response = await fetch("https://hussen98.app.n8n.cloud/webhook/4f5961ef-c19b-4135-96e5-7fcfe03ae22e");
             const data = await response.json();
-            const appointments = data.appointments || [];
+            loadedAppointments = data.appointments || [];
+
+            populateTimeDropdown(); 
 
             container.innerHTML = "";
             tomorrowGrid.innerHTML = "";
@@ -452,43 +478,32 @@
             const today = new Date();
             const tomorrow = new Date();
             tomorrow.setDate(today.getDate() + 1);
-
             const todayStr = today.toISOString().split('T')[0];
             const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            tomorrowLabel.innerText = tomorrow.toLocaleDateString('ar-EG', options);
+            tomorrowLabel.innerText = tomorrow.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
 
-            const todayAppointments = appointments.filter(item => item.Date === todayStr || !item.Date);
-            const tomorrowAppointments = appointments.filter(item => item.Date === tomorrowStr);
+            const todayAppointments = loadedAppointments.filter(item => item.Date === todayStr || !item.Date);
+            const tomorrowAppointments = loadedAppointments.filter(item => item.Date === tomorrowStr);
 
             if (todayAppointments.length === 0) {
                 container.innerHTML = `<p class="text-center text-on-surface-variant py-md">لا توجد مواعيد مسجلة لليوم.</p>`;
             } else {
                 todayAppointments.forEach((item, index) => {
-                    const statusText = index === 0 ? "نشط" : "قادم";
                     const statusBadge = index === 0 ? "bg-secondary/20 text-secondary" : "bg-primary/20 text-primary";
-                    const formattedTime = formatTimeWithPeriod(item.Time);
-                    const subject = item.Subject || item.subject || 'استشارة قانونية';
-
                     container.innerHTML += `
                         <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 flex items-center justify-between relative">
-                            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-70"></div>
                             <div class="flex items-center gap-lg">
                                 <div>
-                                    <h4 class="font-headline-sm text-on-surface font-bold">${item.Name || 'مستشار قانوني'}</h4>
-                                    <p class="text-label-md text-on-surface mt-sm" dir="rtl">
-                                    <p class="text-label-sm text-primary font-semibold">${subject}</p>
+                                    <h4 class="font-bold">${item.Name || 'مستشار قانوني'}</h4>
+                                    <p class="text-label-sm text-primary font-semibold">${item.Subject || 'استشارة قانونية'}</p>
                                 </div>
                             </div>
                             <div class="text-right">
-                                <span class="px-md py-0.5 ${statusBadge} rounded-full text-[10px] font-bold">${statusText}</span>
-                                <p class="text-label-md text-on-surface mt-sm" dir="rtl">
-                                    <span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${formattedTime}
-                                </p>
+                                <span class="px-md py-0.5 ${statusBadge} rounded-full text-[10px] font-bold">${index === 0 ? "نشط" : "قادم"}</span>
+                                <p class="text-label-md mt-sm"><span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${formatTimeWithPeriod(item.Time)}</p>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 });
             }
 
@@ -496,86 +511,70 @@
                 tomorrowGrid.innerHTML = `<p class="text-center text-on-surface-variant py-md col-span-3">لا توجد مواعيد مسجلة للغد.</p>`;
             } else {
                 tomorrowAppointments.forEach(item => {
-                    const formattedTime = formatTimeWithPeriod(item.Time);
-                    const subject = item.Subject || item.subject || 'استشارة قانونية';
                     tomorrowGrid.innerHTML += `
                         <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative">
-                            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
                             <div class="text-right">
-                                <h4 class="font-headline-sm text-on-surface font-bold">${item.Name}</h4>
-                                <p class="text-label-md text-on-surface mt-sm" dir="rtl">
-                                <p class="text-label-sm text-primary font-semibold">${subject}</p>
-                                
+                                <h4 class="font-bold">${item.Name}</h4>
+                                <p class="text-label-sm text-primary font-semibold">${item.Subject || 'استشارة قانونية'}</p>
                             </div>
-                            <div class="flex items-center gap-md">
-                                <div class="text-right">
-                                    <span class="px-md py-0.5 bg-primary/20 text-primary rounded-full text-[10px] font-bold">قادم</span>
-                                    <p class="text-label-md text-on-surface mt-sm" dir="rtl">
-                                        <span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${formattedTime}
-                                    </p>
-                                </div>
+                            <div class="text-right">
+                                <span class="px-md py-0.5 bg-primary/20 text-primary rounded-full text-[10px] font-bold">قادم</span>
+                                <p class="text-label-md mt-sm"><span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${formatTimeWithPeriod(item.Time)}</p>
                             </div>
-                        </div>
-                    `;
+                        </div>`;
                 });
             }
-
+            initAnimations();
         } catch (error) {
             console.error("Error loading appointments:", error);
-            container.innerHTML = `<p class="text-center text-error py-md">حدث خطأ أثناء تحديث المواعيد من السيرفر.</p>`;
         }
     }
 
-    window.onload = function() {
-        initDateTimePickers();
-        loadAppointments();
-    };
-
     document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
         e.preventDefault();
+        const selectedDate = document.getElementById('appointmentDate').value;
+        const selectedTime = document.getElementById('appointmentTime').value;
         
+        if (loadedAppointments.some(a => a.Date === selectedDate && a.Time === selectedTime)) {
+            alert('عذراً، هذا الموعد تم حجزه للتو. يرجى اختيار وقت آخر.');
+            return;
+        }
+
         const submitButton = this.querySelector('button[type="submit"]');
         submitButton.disabled = true;
-        submitButton.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> جاري إرسال الطلب...';
-
+        submitButton.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> جاري الإرسال...';
+        
         const formData = {
             name: document.getElementById('clientName').value,
             phone: document.getElementById('clientPhone').value,
             email: document.getElementById('clientEmail').value,
-            date: document.getElementById('appointmentDate').value,
-            time: document.getElementById('appointmentTime').value,
+            date: selectedDate,
+            time: selectedTime,
             subject: document.getElementById('sessionSubject').value,
             submittedAt: new Date().toISOString()
         };
 
-        const webhookUrl = 'https://hussen98.app.n8n.cloud/webhook/4d552f32-16a7-4d84-8642-2e4b70000595';
-
         try {
-            const response = await fetch(webhookUrl, {
+            const response = await fetch('https://hussen98.app.n8n.cloud/webhook/4d552f32-16a7-4d84-8642-2e4b70000595', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
             if (response.ok) {
-                alert('تم تسجيل الموعد بنجاح وجدولة التذكير!');
+                alert('تم تسجيل الموعد بنجاح!');
                 document.getElementById('appointmentForm').reset();
-                initDateTimePickers();
                 loadAppointments();
-            } else {
-                alert('حدث خطأ أثناء تسجيل الموعد، يرجى المحاولة لاحقاً.');
             }
         } catch (error) {
-            console.error('Error:', error);
-            alert('فشل الاتصال بنظام الاتمتة المطور.');
+            alert('فشل الاتصال.');
         } finally {
             submitButton.disabled = false;
             submitButton.innerHTML = '<span class="material-symbols-outlined">person_add</span> تأكيد تسجيل الموعد';
         }
     });
+
+    window.onload = () => { initDateTimePickers(); loadAppointments(); };
 </script>
 </body></html>
-
 
