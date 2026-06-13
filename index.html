@@ -199,7 +199,7 @@
 <div class="inline-block px-md py-xs bg-primary/10 border border-primary/20 rounded-full mb-lg mt-md">
 <span class="text-primary font-label-sm text-label-sm flex items-center gap-xs">
 <span class="material-symbols-outlined text-[16px]">verified</span>
-        نخبة من المستعارين القانونيين في خدمتكم
+        نخبة من المستشارين القانونيين في خدمتكم
     </span>
 </div>
 <p class="text-body-lg font-body-lg text-slate-500 dark:text-on-surface-variant max-w-2xl mx-auto mb-xl">
@@ -261,4 +261,29 @@
 <section class="py-xl bg-surface-container-low" id="appointments-mgmt">
 <div class="container mx-auto px-margin">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-<div class="lg:
+<div class="lg:col-span-5">
+<div id="booking" class="glass-card rounded-2xl p-xl h-full border-primary/20 relative scroll-mt-24"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">add_circle</span>
+              تسجيل موعد جديد
+            </h3>
+</div>
+<p class="text-label-sm text-slate-500 dark:text-on-surface-variant mb-lg">أدخل تفاصيل الموكل لتحديد موعد استشارة جديد في النظام.</p>
+<form id="appointmentForm" class="space-y-md">
+<div class="flex flex-col gap-xs">
+<label class="text-label-sm text-on-surface">اسم الموكل</label>
+<input id="clientName" name="clientName" required class="bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" placeholder="مثال: أحمد محمد" type="text">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-sm text-on-surface">رقم الجوال</label>
+<input id="clientPhone" name="clientPhone" required class="bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="05XXXXXXXX" style="text-align: right;" type="tel">
+</div>
+<div class="flex flex-col gap-xs">
+<label class="text-label-sm text-on-surface">البريد الإلكتروني</label>
+<input id="clientEmail" name="clientEmail" required class="bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="example@prosys.com" style="text-align: right;" type="email">
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="flex flex-col gap-xs">
+<label class="text-label-sm text-on-surface">تاريخ الموعد</label>
+<input id="appointmentDate" name="appointmentDate" required class="bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-outline-variant text-on-surface rounded-lg px-md py-sm text-center cursor-pointer text-right w-full
