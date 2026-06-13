@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="light scroll-smooth" dir="rtl" lang="ar" style=""><head>
+<!DOCTYPE html><html class="dark scroll-smooth" dir="rtl" lang="ar" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>عدل للمحاماة والاستشارات القانونية</title>
@@ -6,45 +6,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Noto+Kufi+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <style>
-        /* تعريف متغيرات الألوان للتحكم بالوضع الفاتح والداكن */
-        :root {
-            --bg-color: #f4f6fa;
-            --text-color: #1b2537;
-            --card-bg: #ffffff;
-            --card-border: #e2e8f0;
-        }
-
-        html.dark {
-            --bg-color: #0b1326;
-            --text-color: #dae2fd;
-            --card-bg: #171f33;
-            --card-border: #2d3449;
-        }
-
         body {
             font-family: 'Noto Kufi Arabic', 'Be Vietnam Pro', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #0b1326;
+            color: #dae2fd;
             margin: 0;
             overflow-x: hidden;
             text-align: right;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .glass-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background: #171f33;
+            border: 1px solid #2d3449;
             transition: all 0.3s ease;
         }
 
-        html.dark .glass-card:hover {
+        .glass-card:hover {
             border-color: #89ceff;
             box-shadow: 0 0 20px rgba(137, 206, 255, 0.1);
-        }
-
-        html.light .glass-card:hover {
-            border-color: #0ea5e9;
-            box-shadow: 0 10px 20px rgba(14, 165, 239, 0.05);
         }
 
         .hero-glow {
@@ -59,11 +38,14 @@
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: var(--bg-color);
+            background: #0b1326;
         }
         ::-webkit-scrollbar-thumb {
-            background: var(--card-border);
+            background: #2d3449;
             border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #89ceff;
         }
     </style>
 <script id="tailwind-config">
@@ -72,8 +54,8 @@
             theme: {
                 extend: {
                     "colors": {
-                        "surface-container": "var(--card-bg)",
-                        "background": "var(--bg-color)",
+                        "surface-container": "#171f33",
+                        "background": "#0b1326",
                         "error-container": "#93000a",
                         "surface-container-highest": "#2d3449",
                         "outline": "#88929b",
@@ -82,7 +64,7 @@
                         "on-error-container": "#ffdad6",
                         "primary-fixed-dim": "#89ceff",
                         "on-secondary": "#003824",
-                        "surface": "var(--bg-color)",
+                        "surface": "#0b1326",
                         "secondary-container": "#00a572",
                         "on-primary-fixed": "#001e2f",
                         "surface-bright": "#31394d",
@@ -92,32 +74,32 @@
                         "on-primary-fixed-variant": "#004c6e",
                         "inverse-primary": "#006591",
                         "inverse-surface": "#dae2fd",
-                        "surface-variant": "var(--card-border)",
-                        "surface-container-low": "var(--bg-color)",
-                        "surface-container-high": "var(--card-bg)",
+                        "surface-variant": "#2d3449",
+                        "surface-container-low": "#131b2e",
+                        "surface-container-high": "#222a3d",
                         "on-secondary-fixed": "#002113",
                         "secondary-fixed-dim": "#4edea3",
-                        "on-surface-variant": "#64748b",
-                        "surface-dim": "var(--bg-color)",
-                        "outline-variant": "var(--card-border)",
+                        "on-surface-variant": "#bec8d2",
+                        "surface-dim": "#0b1326",
+                        "outline-variant": "#3e4850",
                         "on-tertiary-container": "#1407ad",
-                        "on-surface": "var(--text-color)",
+                        "on-surface": "#dae2fd",
                         "tertiary-fixed": "#e1e0ff",
-                        "secondary": "#00a572",
-                        "on-primary": "#ffffff",
+                        "secondary": "#4edea3",
+                        "on-primary": "#00344d",
                         "on-error": "#690005",
                         "on-tertiary": "#1000a9",
                         "on-primary-container": "#003751",
-                        "on-background": "var(--text-color)",
-                        "surface-tint": "#0ea5e9",
+                        "on-background": "#dae2fd",
+                        "surface-tint": "#89ceff",
                         "tertiary": "#c0c1ff",
                         "primary-container": "#0ea5e9",
                         "tertiary-fixed-dim": "#c0c1ff",
-                        "surface-container-lowest": "var(--bg-color)",
+                        "surface-container-lowest": "#060e20",
                         "on-secondary-fixed-variant": "#005236",
                         "error": "#ffb4ab",
                         "primary-fixed": "#c9e6ff",
-                        "primary": "#0ea5e9",
+                        "primary": "#89ceff",
                         "on-secondary-container": "#00311f"
                     },
                     "borderRadius": {
@@ -161,36 +143,39 @@
 </head>
 <body class="bg-background text-on-surface">
 <main>
+<!-- Hero Section -->
 <section class="relative min-h-[80vh] flex items-center justify-center py-xl hero-glow overflow-hidden">
 <div class="container mx-auto px-margin text-center z-10">
 <div class="flex justify-center mb-md">
 <div class="relative">
-<span class="material-symbols-outlined text-[120px] text-primary opacity-100 drop-shadow-[0_0_25px_rgba(14,165,239,0.3)] transition-all">gavel</span>
+<span class="material-symbols-outlined text-[120px] text-primary opacity-100 drop-shadow-[0_0_25px_rgba(137,206,255,0.5)] transition-all">gavel</span>
 <div class="absolute inset-0 bg-primary blur-2xl opacity-20 rounded-full"></div>
 </div>
-</div><h2 class="font-display-lg mb-md leading-tight text-[64px] lg:text-[72px] font-bold bg-gradient-to-l from-primary to-[#0ea5e9] bg-clip-text text-transparent drop-shadow-lg">عدل للمحاماة والاستشارات القانونية</h2>
+</div><h2 class="font-display-lg mb-md leading-tight text-[64px] lg:text-[72px] font-bold bg-gradient-to-l from-primary to-[#c9e6ff] bg-clip-text text-transparent drop-shadow-lg">عدل للمحاماة والاستشارات القانونية</h2>
 <div class="inline-block px-md py-xs bg-primary/10 border border-primary/20 rounded-full mb-lg mt-md">
 <span class="text-primary font-label-sm text-label-sm flex items-center gap-xs">
 <span class="material-symbols-outlined text-[16px]">verified</span>
         نخبة من المستشارين القانونيين في خدمتكم
     </span>
 </div>
-<p class="text-body-lg font-body-lg text-slate-500 dark:text-on-surface-variant max-w-2xl mx-auto mb-xl">
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-xl">
                 نقدم خدمات قانونية شاملة تجمع بين الخبرة العميقة والابتكار لضمان حماية مصالحكم وتحقيق تطلعاتكم في البيئة التنظيمية المعاصرة.
             </p>
 <div class="flex flex-col sm:flex-row gap-md justify-center">
-<a class="bg-primary text-white px-xl py-md rounded-lg font-headline-sm text-headline-sm hover:scale-105 transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20" href="#booking">
+<a class="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-sm text-headline-sm hover:scale-105 transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20" href="#booking">
 <span class="material-symbols-outlined">event_available</span>
                     احجز استشارة قانونية
                 </a>
 </div>
 </div>
+<!-- Decorative abstract lines -->
 <div class="absolute inset-0 pointer-events-none opacity-20">
 <div class="absolute top-1/4 right-10 w-64 h-64 border border-primary/30 rounded-full blur-3xl"></div>
 <div class="absolute bottom-1/4 left-10 w-96 h-96 border border-secondary/30 rounded-full blur-3xl"></div>
 </div>
 </section>
 
+<!-- Statistics Cards Section -->
 <section class="bg-surface py-sm">
 <div class="container mx-auto px-margin">
 <div class="text-center mb-xl">
@@ -199,74 +184,76 @@
   </h3>
 <div class="h-[2px] w-24 bg-primary/30 mx-auto mt-md rounded-full"></div>
 </div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-<div class="glass-card rounded-xl flex items-center gap-md p-xl"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"></div><div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center">
+<div class="glass-card rounded-xl flex items-center gap-md p-xl" style="transform: translateY(0px); opacity: 1;"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div><div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center">
 <span class="material-symbols-outlined text-primary text-[32px]">balance</span>
 </div>
 <div class="space-y-xs">
-<p class="text-body-md text-slate-500 dark:text-on-surface-variant">إجمالي القضايا</p>
+<p class="text-body-md text-on-surface-variant">إجمالي القضايا</p>
 <h4 class="text-[48px] font-bold text-on-surface leading-none">1,284</h4>
 </div></div>
-<div class="glass-card rounded-xl flex items-center gap-md p-xl"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent"></div><div class="w-14 h-14 bg-emerald-500/20 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-emerald-500 text-[32px]">groups</span>
+<div class="glass-card rounded-xl flex items-center gap-md p-xl" style="transform: translateY(0px); opacity: 1;"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-100"></div><div class="w-14 h-14 bg-secondary/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[32px]">groups</span>
 </div>
 <div class="space-y-xs">
-<p class="text-body-md text-slate-500 dark:text-on-surface-variant">الموكلون النشطون</p>
+<p class="text-body-md text-on-surface-variant">الموكلون النشطون</p>
 <h4 class="text-[48px] font-bold text-on-surface leading-none">850</h4>
 </div></div>
-<div class="glass-card rounded-xl flex items-center gap-md p-xl"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div><div class="w-14 h-14 bg-purple-500/20 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-purple-500 text-[32px]">description</span>
+<div class="glass-card rounded-xl flex items-center gap-md p-xl" style="transform: translateY(0px); opacity: 1;"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-tertiary to-transparent opacity-100"></div><div class="w-14 h-14 bg-tertiary/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[32px]">description</span>
 </div>
 <div class="space-y-xs">
-<p class="text-body-md text-slate-500 dark:text-on-surface-variant">المهام القانونية</p>
+<p class="text-body-md text-on-surface-variant">المهام القانونية</p>
 <h4 class="text-[48px] font-bold text-on-surface leading-none">320</h4>
 </div></div>
-<div class="glass-card rounded-xl flex items-center gap-md p-xl"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-rose-500 to-transparent"></div><div class="w-14 h-14 bg-rose-500/20 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-rose-500 text-[32px]">notification_important</span>
+<div class="glass-card rounded-xl flex items-center gap-md p-xl" style="transform: translateY(0px); opacity: 1;"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-error to-transparent opacity-100"></div><div class="w-14 h-14 bg-error-container/20 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-error text-[32px]">notification_important</span>
 </div>
 <div class="space-y-xs">
-<p class="text-body-md text-slate-500 dark:text-on-surface-variant">مواعيد جلسات قادمة</p>
+<p class="text-body-md text-on-surface-variant">مواعيد جلسات قادمة</p>
 <h4 class="text-[48px] font-bold text-on-surface leading-none">12</h4>
 </div></div>
 </div>
 </div>
 </section>
 
+<!-- Appointment Form Section -->
 <section class="py-xl bg-surface-container-low" id="appointments-mgmt">
 <div class="container mx-auto px-margin">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Register New Appointment Form -->
 <div class="lg:col-span-5">
-<div id="booking" class="glass-card rounded-2xl p-xl h-full border-primary/20 relative scroll-mt-6"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<div id="booking" class="glass-card rounded-2xl p-xl h-full border-primary/20 relative scroll-mt-6" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="flex items-center justify-between mb-md">
 <h3 class="font-headline-md text-on-surface flex items-center gap-sm">
 <span class="material-symbols-outlined text-primary">add_circle</span>
               تسجيل موعد جديد
             </h3>
 </div>
-<p class="text-label-sm text-slate-500 dark:text-on-surface-variant mb-lg">أدخل تفاصيل الموكل لتحديد موعد استشارة جديد في النظام.</p>
+<p class="text-label-sm text-on-surface-variant mb-lg">أدخل تفاصيل الموكل لتحديد موعد استشارة جديد في النظام.</p>
 <form id="appointmentForm" class="space-y-md">
 <div class="flex flex-col gap-xs">
-<label class="text-label-sm text-on-surface">اسم الموكل</label>
-<input id="clientName" name="clientName" required class="bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" placeholder="مثال: أحمد محمد" type="text">
+<label class="text-label-sm text-on-surface-variant">اسم الموكل</label>
+<input id="clientName" name="clientName" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" placeholder="مثال: أحمد محمد" type="text">
 </div>
 <div class="flex flex-col gap-xs">
-<label class="text-label-sm text-on-surface">رقم الجوال</label>
-<input id="clientPhone" name="clientPhone" required class="bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="05XXXXXXXX" style="text-align: right;" type="tel">
+<label class="text-label-sm text-on-surface-variant">رقم الجوال</label>
+<input id="clientPhone" name="clientPhone" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="05XXXXXXXX" style="text-align: right;" type="tel">
 </div>
 <div class="flex flex-col gap-xs">
-<label class="text-label-sm text-on-surface">البريد الإلكتروني</label>
-<input id="clientEmail" name="clientEmail" required class="bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="example@prosys.com" style="text-align: right;" type="email">
+<label class="text-label-sm text-on-surface-variant">البريد الإلكتروني</label>
+<input id="clientEmail" name="clientEmail" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="example@prosys.com" style="text-align: right;" type="email">
 </div>
 <div class="grid grid-cols-2 gap-md">
 <div class="flex flex-col gap-xs">
-<label class="text-label-sm text-on-surface">تاريخ الموعد</label>
-<input id="appointmentDate" name="appointmentDate" required class="bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-outline-variant text-on-surface rounded-lg px-md py-sm text-center cursor-pointer text-right w-full block" type="date" value="2026-06-15">
+<label class="text-label-sm text-on-surface-variant">تاريخ الموعد</label>
+<input id="appointmentDate" name="appointmentDate" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center cursor-pointer text-right w-full block" type="date" value="2026-06-15">
 </div>
 <div class="flex flex-col gap-xs">
-<label class="text-label-sm text-on-surface">وقت الموعد</label>
-<input id="appointmentTime" name="appointmentTime" required class="bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-outline-variant text-on-surface rounded-lg px-md py-sm text-center cursor-pointer text-right w-full block" type="time" value="14:30">
+<label class="text-label-sm text-on-surface-variant">وقت الموعد</label>
+<input id="appointmentTime" name="appointmentTime" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center cursor-pointer text-right w-full block" type="time" value="14:30">
 </div>
 </div>
-<button class="w-full bg-primary text-white px-xl py-md rounded-lg font-headline-sm text-headline-sm hover:scale-105 transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20 cursor-pointer" type="submit">
+<button class="w-full bg-primary text-on-primary px-xl py-md rounded-lg font-headline-sm text-headline-sm hover:scale-105 transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20 cursor-pointer" type="submit">
               تأكيد تسجيل الموعد
               <span class="material-symbols-outlined">person_add</span>
 </button>
@@ -274,22 +261,21 @@
 </div>
 </div>
 
+<!-- Today's Appointments -->
 <div class="lg:col-span-7">
-<div class="glass-card rounded-2xl p-xl h-full"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<div class="glass-card rounded-2xl p-xl h-full" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="flex items-center justify-between mb-xl"><h3 class="font-headline-md text-on-surface flex items-center gap-sm">
               مواعيد اليوم
-              <span class="material-symbols-outlined text-emerald-500">list_alt</span>
+              <span class="material-symbols-outlined text-secondary">list_alt</span>
 </h3>
-<div class="flex items-center gap-sm">
-<button onclick="toggleTheme()" class="w-10 h-10 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center hover:text-primary transition-all cursor-pointer" title="تبديل المظهر">
-<span id="themeIcon" class="material-symbols-outlined text-on-surface">dark_mode</span>
-</button>
-<button onclick="loadAppointments()" class="w-10 h-10 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center hover:text-primary transition-all cursor-pointer" title="تحديث القائمة">
-<span class="material-symbols-outlined text-on-surface">sync</span>
+<!-- التحديث هنا: تم حذف زر الفلترة والابقاء على زر التحديث مفعلاً بذكاء -->
+<div class="flex items-center gap-md">
+<button onclick="loadAppointments()" class="w-10 h-10 bg-surface-container-highest rounded flex items-center justify-center hover:bg-surface-container-highest/80 hover:text-primary transition-all cursor-pointer" title="تحديث القائمة">
+<span class="material-symbols-outlined text-on-surface-variant">sync</span>
 </button>
 </div></div>
 <div id="appointmentsListContainer" class="space-y-gutter">
-<div class="p-lg bg-slate-100 dark:bg-slate-800/30 rounded-xl border border-slate-200 dark:border-outline-variant/30 flex items-center justify-between relative animate-pulse">
+<div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 flex items-center justify-between relative animate-pulse"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-70"></div>
 <div class="flex items-center gap-lg">
 <div>
 <h4 class="font-headline-sm text-on-surface">جاري تحميل المواعيد...</h4>
@@ -301,18 +287,20 @@
 </div>
 </div>
 
-<div class="mt-xl glass-card rounded-2xl p-xl border-slate-200 dark:border-outline-variant/30">
+<!-- Tomorrow's Summary Section -->
+<div class="mt-xl glass-card rounded-2xl p-xl border-outline-variant/30" style="opacity: 1; transform: translateY(0px);">
 <div class="flex items-center justify-between mb-md"><h3 class="font-headline-md text-on-surface flex items-center gap-sm">
       ملخص مواعيد الغد
       <span class="material-symbols-outlined text-primary">calendar_month</span>
 </h3>
-<p class="text-label-sm text-slate-500 dark:text-on-surface-variant">27 نوفمبر 2024</p></div>
-<div class="h-[1px] bg-slate-200 dark:bg-outline-variant/30 mb-xl"></div>
+<p class="text-label-sm text-on-surface-variant">27 نوفمبر 2024</p></div>
+<div class="h-[1px] bg-outline-variant/30 mb-xl"></div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="glass-card p-lg rounded-xl border border-slate-200 dark:border-outline-variant/30 flex justify-between items-center hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-all relative"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<!-- Appointment 1 -->
+<div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="text-right">
 <h4 class="font-headline-sm text-on-surface">شركة الابتكار التقني</h4>
-<p class="text-label-sm text-slate-500 dark:text-on-surface-variant">قضية تجارية</p>
+<p class="text-label-sm text-on-surface-variant">قضية تجارية</p>
 </div>
 <div class="flex items-center gap-md">
 <div class="text-left">
@@ -323,10 +311,11 @@
 </div>
 </div>
 </div>
-<div class="glass-card p-lg rounded-xl border border-slate-200 dark:border-outline-variant/30 flex justify-between items-center hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-all relative"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<!-- Appointment 2 -->
+<div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="text-right">
 <h4 class="font-headline-sm text-on-surface">أحمد المنصور</h4>
-<p class="text-label-sm text-slate-500 dark:text-on-surface-variant">استشارة عقارية</p>
+<p class="text-label-sm text-on-surface-variant">استشارة عقارية</p>
 </div>
 <div class="flex items-center gap-md">
 <div class="text-left">
@@ -337,10 +326,11 @@
 </div>
 </div>
 </div>
-<div class="glass-card p-lg rounded-xl border border-slate-200 dark:border-outline-variant/30 flex justify-between items-center hover:bg-slate-100 dark:hover:bg-slate-800/30 transition-all relative"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+<!-- Appointment 3 -->
+<div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="text-right">
 <h4 class="font-headline-sm text-on-surface">مجموعة التجزئة الدولية</h4>
-<p class="text-label-sm text-slate-500 dark:text-on-surface-variant">مراجعة عقود</p>
+<p class="text-label-sm text-on-surface-variant">مراجعة عقود</p>
 </div>
 <div class="flex items-center gap-md">
 <div class="text-left">
@@ -358,24 +348,24 @@
 </main>
 
 <script>
-    // دالة التبديل التلقائي بين اللايت والبارك مع الحفاظ على اللايت كرئيسي افتراضي
-    function toggleTheme() {
-        const html = document.documentElement;
-        const icon = document.getElementById("themeIcon");
-        
-        if (html.classList.contains("dark")) {
-            html.classList.remove("dark");
-            html.classList.add("light");
-            icon.innerText = "dark_mode";
-        } else {
-            html.classList.remove("light");
-            html.classList.add("dark");
-            icon.innerText = "light_mode";
-        }
-    }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.glass-card').forEach(card => {
+        card.style.opacity = '0.9';
+        card.style.transform = 'translateY(10px)';
+        observer.observe(card);
+    });
 
     async function loadAppointments() {
         const container = document.getElementById("appointmentsListContainer");
+        // إضافة تأثير دوران الأيقونة أثناء جلب البيانات لإعطاء تجربة مستخدم ديناميكية
         const syncIcon = document.querySelector('button[onclick="loadAppointments()"] span');
         if(syncIcon) syncIcon.classList.add('animate-spin');
 
@@ -390,7 +380,7 @@
 
             if (appointments.length === 0) {
                 container.innerHTML = `
-                    <div class="p-lg text-center text-slate-500 dark:text-on-surface-variant">
+                    <div class="p-lg text-center text-on-surface-variant">
                         لا توجد مواعيد مسجلة حالياً ليومنا هذا.
                     </div>
                 `;
@@ -398,45 +388,19 @@
             }
 
             appointments.forEach((item, index) => {
-                const badgeColor = index === 0 ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400" : "bg-primary/20 text-primary";
+                const badgeColor = index === 0 ? "bg-secondary/20 text-secondary" : "bg-primary/20 text-primary";
                 const badgeText = index === 0 ? "نشط" : "قادم";
-                
-                const clientPhone = item.Phone || '';
-                const clientEmail = item.Email || '';
-                const clientNameEncoded = encodeURIComponent(item.Name || '');
-                
-                let cleanPhone = clientPhone.replace(/\s+/g, '').replace(/[+\-]/g, '');
-                if (cleanPhone.startsWith('05')) {
-                    cleanPhone = '966' + cleanPhone.substring(1);
-                }
 
                 container.innerHTML += `
-                    <div class="p-lg bg-slate-50 dark:bg-surface-container-highest/30 rounded-xl border border-slate-200 dark:border-outline-variant/30 flex items-center justify-between relative mb-3">
-                        <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-70"></div>
-                        
+                    <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 flex items-center justify-between relative mb-3">
+                        <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-70"></div>
                         <div class="flex items-center gap-lg">
                             <div>
                                 <h4 class="font-headline-sm text-on-surface">${item.Name}</h4>
-                                ${item.Email ? `<p class="text-label-sm text-slate-500 dark:text-on-surface-variant mb-sm">${item.Email}</p>` : ''}
-                                
-                                <div class="flex items-center gap-sm mt-sm">
-                                    ${cleanPhone ? `
-                                        <a href="https://wa.me/${cleanPhone}?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A3%D9%8A%D9%8A%D9%80%D8%AF%20${clientNameEncoded}%D8%8C%20%D9%86%D9%88%D8%AF%20%D8%AA%D8%A3%D9%83%D9%8A%D8%AF%20%D9%85%D9%88%D8%B9%D8%AF%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%AA%D9%83%20%D8%A7%D9%84%D9%8قبائل%D9%88%D9%86%D9%8A%D8%A9%20%D9%84%D8%AF%D9%8A%D9%86%D8%A7." target="_blank" class="w-8 h-8 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center transition-all" title="تواصل عبر الواتساب">
-                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.428 1.977 13.947 1.977 12.004 1.977c-5.438 0-9.863 4.37-9.866 9.801-.001 1.743.473 3.448 1.371 4.954l-.993 3.626 3.725-.977zM15.768 12.92c-.3-.15-1.775-.875-2.05-.975-.275-.1-.475-.15-.675.15-.2.3-.775.975-.95 1.175-.175.2-.35.225-.65.075-.3-.15-1.265-.467-2.41-1.485-.89-.793-1.49-1.773-1.665-2.075-.175-.3-.018-.463.13-.61.135-.133.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.244-.589-.493-.51-.675-.52-.175-.007-.375-.01-.575-.01-.2 0-.525.075-.8 1.05-.275.975-1.05 2.1-1.05 2.15 0 .05.15.35.65.85 1.35 1.3 2.675 1.875 3.825 2.3.625.23 1.125.13 1.5.07.425-.063 1.25-.5 1.425-.975.175-.475.175-.875.125-.975-.05-.1-.2-.15-.5-.3z"/>
-                                            </svg>
-                                        </a>
-                                    ` : ''}
-                                    ${clientEmail ? `
-                                        <a href="mailto:${clientEmail}?subject=تأكيد موعد استشارة قانونية - مكتب عدل للمحاماة" class="w-8 h-8 rounded-full bg-primary/10 hover:bg-primary/20 text-primary flex items-center justify-center transition-all" title="إرسال بريد إلكتروني">
-                                            <span class="material-symbols-outlined text-[18px]">mail</span>
-                                        </a>
-                                    ` : ''}
-                                </div>
+                                <p class="text-label-sm text-on-surface-variant">${item.Email}</p>
                             </div>
                         </div>
-                        
-                        <div class="text-right flex flex-col justify-between items-end min-h-[60px]">
+                        <div class="text-right">
                             <span class="px-md py-0.5 ${badgeColor} rounded-full text-[10px] font-bold">${badgeText}</span>
                             <p class="text-label-md text-on-surface mt-sm" dir="rtl">
                                 <span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${item.Time}
@@ -504,9 +468,9 @@
     });
 </script>
 
-<footer class="py-lg mt-xl border-t border-slate-200 dark:border-outline-variant/30">
+<footer class="py-lg mt-xl border-t border-outline-variant/30">
 <div class="container mx-auto px-margin text-center">
-<p class="text-label-sm text-slate-500 dark:text-on-surface-variant opacity-70">
+<p class="text-label-sm text-on-surface-variant opacity-70">
       © 2026 عدل للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة.
     </p>
 </div>
