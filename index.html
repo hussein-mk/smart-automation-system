@@ -300,54 +300,138 @@
 
     // دالة جلب المواعيد وتحديثها لتناسب تصميم الواجهة الفعلي بدلاً من الـ Table
     async function loadAppointments() {
-        const container = document.getElementById("appointmentsListContainer");
-        // نستخدم نفس رابط الـ webhook الذي تعمل عليه الصفحة لاستقبال وجلب البيانات
-        const webhookUrl = 'https://hussen98.app.n8n.cloud/webhook/4f5961ef-c19b-4135-96e5-7fcfe03ae22e';
+
+    const container = document.getElementById("appointmentsListContainer");
+
+    const webhookUrl =
+        "https://hussen98.app.n8n.cloud/webhook/4f5961ef-c19b-4135-96e5-7fcfe03ae22e";
+
+    try {
+
+        console.log("Webhook URL:", webhookUrl);
+
+        const response = await fetch(webhookUrl, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json"
+            }
+        });
+
+        console.log("Status:", response.status);
+        console.log("OK:", response.ok);
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        const text = await response.text();
+
+        console.log("Raw Response:", text);
+
+        let data;
 
         try {
-            // ملاحظة: قد تحتاج لتغيير نوع الـ Method في الـ n8n إلى GET لجلب البيانات، أو معالجتها وفقاً لإعدادات سير العمل لديك
-      const response = await fetch(webhookUrl);
-const data = await response.json();
-
-const appointments = data.appointments || data;
-
-container.innerHTML = "";
-
-if (!Array.isArray(appointments) || appointments.length === 0) {
-    container.innerHTML = `
-        <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 text-center text-on-surface-variant">
-            لا توجد مواعيد مسجلة اليوم.
-        </div>`;
-    return;
-}
-
-appointments.forEach(item => {
-    const name = item.Name || item.name || "عميل غير مسمى";
-    const details = item.Email || item.email || "استشارة قانونية";
-    const time = item.Time || item.time || "--:--";
-
-    container.innerHTML += `
-        <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 flex items-center justify-between relative">
-            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-70"></div>
-            <div>
-                <h4>${name}</h4>
-                <p>${details}</p>
-            </div>
-            <div>
-                <p>${time}</p>
-            </div>
-        </div>
-    `;
-});
-        } catch (error) {
-            console.error('Error fetching appointments:', error);
-            container.innerHTML = `
-                <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-error/30 text-center text-error">
-                    فشل في تحميل مواعيد اليوم المتزامنة.
-                </div>`;
+            data = JSON.parse(text);
+        } catch (e) {
+            throw new Error(
+                "الـ Webhook لا يرجع JSON صالح. راجع Respond to Webhook في n8n."
+            );
         }
-    }
 
+        const appointments =
+            data.appointments ||
+            data.data ||
+            data.rows ||
+            data;
+
+        container.innerHTML = "";
+
+        if (
+            !Array.isArray(appointments) ||
+            appointments.length === 0
+        ) {
+
+            container.innerHTML = `
+                <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 text-center text-on-surface-variant">
+                    لا توجد مواعيد مسجلة حالياً.
+                </div>
+            `;
+
+            return;
+        }
+
+        appointments.forEach(item => {
+
+            const name =
+                item.Name ||
+                item.name ||
+                item.ClientName ||
+                item.clientName ||
+                "عميل غير مسمى";
+
+            const email =
+                item.Email ||
+                item.email ||
+                "لا يوجد بريد";
+
+            const phone =
+                item.Phone ||
+                item.phone ||
+                "";
+
+            const time =
+                item.Time ||
+                item.time ||
+                item.AppointmentTime ||
+                "--:--";
+
+            container.innerHTML += `
+                <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 flex items-center justify-between relative">
+
+                    <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-70"></div>
+
+                    <div>
+                        <h4 class="font-bold text-on-surface">
+                            ${name}
+                        </h4>
+
+                        <p class="text-on-surface-variant">
+                            ${email}
+                        </p>
+
+                        ${phone ? `<p>${phone}</p>` : ""}
+                    </div>
+
+                    <div class="text-right">
+
+                        <span class="px-md py-0.5 bg-secondary/20 text-secondary rounded-full text-[10px] font-bold">
+                            موعد
+                        </span>
+
+                        <p class="mt-sm">
+                            ${time}
+                        </p>
+
+                    </div>
+
+                </div>
+            `;
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Error fetching appointments:",
+            error
+        );
+
+        container.innerHTML = `
+            <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-error/30 text-center text-error">
+                ${error.message}
+            </div>
+        `;
+    }
+}
     // استدعاء الدالة تلقائياً بمجرد اكتمال تحميل الصفحة
     document.addEventListener("DOMContentLoaded", loadAppointments);
 
