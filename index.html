@@ -5,6 +5,12 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Noto+Kufi+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- إضافة مكتبة Flatpickr لتحسين اختيار التاريخ بشكل احترافي ومتناسق مع الثيم الداكن -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
+
 <style>
         body {
             font-family: 'Noto Kufi Arabic', 'Be Vietnam Pro', sans-serif;
@@ -50,6 +56,29 @@
         
         html {
             scroll-behavior: smooth;
+        }
+
+        /* تحسين مظهر الفلات بيكر ليتناسب مع ألوان الهوية */
+        .flatpickr-calendar {
+            background: #171f33 !important;
+            border: 1px solid #2d3449 !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+            font-family: 'Noto Kufi Arabic', sans-serif !important;
+        }
+        .flatpickr-day.selected, .flatpickr-day.selected:hover {
+            background: #0ea5e9 !important;
+            border-color: #0ea5e9 !important;
+            color: #001e2f !important;
+        }
+        .flatpickr-day {
+            color: #dae2fd !important;
+        }
+        .flatpickr-day:hover {
+            background: #2d3449 !important;
+        }
+        .flatpickr-months .flatpickr-month, .flatpickr-weekday {
+            color: #89ceff !important;
+            fill: #89ceff !important;
         }
     </style>
 <script id="tailwind-config">
@@ -156,6 +185,7 @@
 </div>
 </div><h2 class="font-display-lg mb-md leading-tight text-[80px] font-bold bg-gradient-to-l from-primary to-[#c9e6ff] bg-clip-text text-transparent drop-shadow-lg">عدل القانونية</h2>
 <div class="inline-block px-md py-xs bg-primary/10 border border-primary/20 rounded-full mb-lg mt-md">
+<!-- تقديم الأيقونة لتكون قبل النص -->
 <span class="text-primary font-label-sm text-label-sm flex items-center gap-xs">
 <span class="material-symbols-outlined text-[16px]">verified</span>
         نخبة من المستشارين القانونيين في خدمتكم
@@ -165,6 +195,7 @@
                 نقدم خدمات قانونية شاملة تجمع بين الخبرة العميقة والابتكار لضمان حماية مصالحكم وتحقيق تطلعاتكم في البيئة التنظيمية المعاصرة.
             </p>
 <div class="flex flex-col sm:flex-row gap-md justify-center">
+<!-- تقديم الأيقونة لتكون قبل النص -->
 <a class="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-sm text-headline-sm hover:scale-105 transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20" href="#appointments-mgmt">
 <span class="material-symbols-outlined">event_available</span>
                     احجز استشارة قانونية
@@ -221,6 +252,7 @@
 <div class="lg:col-span-5">
 <div class="glass-card rounded-2xl p-xl h-full border-primary/20 relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="flex items-center justify-between mb-md">
+<!-- تقديم الأيقونة لتكون قبل النص -->
 <h3 class="font-headline-md text-on-surface flex items-center gap-sm">
 <span class="material-symbols-outlined text-primary">add_circle</span>
               تسجيل موعد جديد
@@ -243,25 +275,29 @@
 <div class="grid grid-cols-2 gap-md">
 <div class="flex flex-col gap-xs">
 <label class="text-label-sm text-on-surface-variant">تاريخ الموعد</label>
-<input id="appointmentDate" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center focus:ring-2 focus:ring-primary outline-none cursor-pointer" type="date">
+<input id="appointmentDate" required readonly class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center focus:ring-2 focus:ring-primary outline-none cursor-pointer" placeholder="اختر التاريخ" type="text">
 </div>
 <div class="flex flex-col gap-xs">
 <label class="text-label-sm text-on-surface-variant">وقت الموعد</label>
-<input id="appointmentTime" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center focus:ring-2 focus:ring-primary outline-none cursor-pointer" type="time">
+<select id="appointmentTime" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center focus:ring-2 focus:ring-primary outline-none cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2389ceff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px_12px] bg-[position:left_12px_center] bg-no-repeat pl-xl">
+</select>
 </div>
 </div>
-<button class="w-full bg-primary-container text-on-primary-container font-headline-sm py-md rounded-lg flex justify-center items-center gap-base hover:brightness-110 transition-all cursor-pointer" type="submit">
-              تأكيد تسجيل الموعد
+<!-- تم تحديث هذا الزر ليطابق تماماً زر احجز استشارة وتقديم الأيقونة قبل النص -->
+<button class="w-full bg-primary text-on-primary px-xl py-md rounded-lg font-headline-sm text-headline-sm hover:scale-105 transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20 cursor-pointer" type="submit">
               <span class="material-symbols-outlined">person_add</span>
+              تأكيد تسجيل الموعد
 </button>
 </form>
 </div>
 </div>
 <div class="lg:col-span-7">
 <div class="glass-card rounded-2xl p-xl h-full" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
-<div class="flex items-center justify-between mb-xl"><h3 class="font-headline-md text-on-surface flex items-center gap-sm">
-              مواعيد اليوم
+<div class="flex items-center justify-between mb-xl">
+<!-- تقديم الأيقونة لتكون قبل النص -->
+<h3 class="font-headline-md text-on-surface flex items-center gap-sm">
               <span class="material-symbols-outlined text-secondary">list_alt</span>
+              مواعيد اليوم
 </h3>
 <div class="flex items-center gap-md">
 <button onclick="loadAppointments()" class="w-10 h-10 bg-surface-container-highest rounded flex items-center justify-center hover:bg-primary/20 transition-all cursor-pointer" title="تحديث المواعيد">
@@ -274,9 +310,11 @@
 </div>
 </div>
 <div class="mt-xl glass-card rounded-2xl p-xl border-outline-variant/30" style="opacity: 1; transform: translateY(0px);">
-<div class="flex items-center justify-between mb-md"><h3 class="font-headline-md text-on-surface flex items-center gap-sm">
-      ملخص مواعيد الغد
+<div class="flex items-center justify-between mb-md">
+<!-- تقديم الأيقونة لتكون قبل النص -->
+<h3 class="font-headline-md text-on-surface flex items-center gap-sm">
       <span class="material-symbols-outlined text-primary">calendar_month</span>
+      ملخص مواعيد الغد
 </h3>
 <p id="tomorrowDateLabel" class="text-label-sm text-on-surface-variant">-- نوفمبر 2024</p></div>
 <div class="h-[1px] bg-outline-variant/30 mb-xl"></div>
@@ -295,7 +333,6 @@
 </footer>
 
 <script>
-    // Reveal effects on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -311,29 +348,71 @@
         observer.observe(card);
     });
 
-    // دالة تعيين التاريخ والوقت الحاليين تلقائياً عند فتح الصفحة لمدخلات المستخدم
-    function setDefaultDateTime() {
-        const now = new Date();
+    function populateTimeDropdown() {
+        const select = document.getElementById('appointmentTime');
+        select.innerHTML = '';
         
-        // ضبط صيغة التاريخ التلقائي لتكون YYYY-MM-DD متوافقة مع الـ input
+        const startHour = 8;
+        const endHour = 22;
+        
+        for (let hour = startHour; hour < endHour; hour++) {
+            for (let min of ['00', '30']) {
+                const hStr = String(hour).padStart(2, '0');
+                const timeValue = `${hStr}:${min}`;
+                
+                const period = hour >= 12 ? 'مساءً' : 'صباحاً';
+                let displayHour = hour % 12;
+                displayHour = displayHour ? displayHour : 12;
+                
+                const option = document.createElement('option');
+                option.value = timeValue;
+                option.className = "bg-[#171f33] text-on-surface";
+                option.textContent = `${displayHour}:${min} ${period}`;
+                select.appendChild(option);
+            }
+        }
+    }
+
+    function initDateTimePickers() {
+        populateTimeDropdown();
+        
+        const now = new Date();
         const year = now.getFullYear();
         const month = String(now.getMonth() + 1).padStart(2, '0');
         const day = String(now.getDate()).padStart(2, '0');
-        document.getElementById('appointmentDate').value = `${year}-${month}-${day}`;
-        
-        // ضبط صيغة الوقت التلقائي لتكون HH:MM
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        document.getElementById('appointmentTime').value = `${hours}:${minutes}`;
+        const defaultDate = `${year}-${month}-${day}`;
+
+        flatpickr("#appointmentDate", {
+            locale: "ar",
+            dateFormat: "Y-m-d",
+            defaultDate: defaultDate,
+            disableMobile: "true"
+        });
+
+        const currentHour = now.getHours();
+        const currentMinutes = now.getMinutes();
+        let targetHour = currentHour;
+        let targetMin = "00";
+
+        if (currentMinutes > 30) {
+            targetHour += 1;
+            targetMin = "00";
+        } else if (currentMinutes > 0) {
+            targetMin = "30";
+        }
+
+        const targetTimeStr = `${String(targetHour).padStart(2, '0')}:${targetMin}`;
+        const timeSelect = document.getElementById('appointmentTime');
+        if (timeSelect.querySelector(`option[value="${targetTimeStr}"]`)) {
+            timeSelect.value = targetTimeStr;
+        }
     }
 
-    // دالة جلب المواعيد من السيرفر وعرضها بالتصميم الأصلي
     async function loadAppointments() {
         const container = document.getElementById("appointmentsListContainer");
         const tomorrowGrid = document.getElementById("tomorrowAppointmentsGrid");
         const tomorrowLabel = document.getElementById("tomorrowDateLabel");
 
-        // إشعار التحميل المؤقت
         container.innerHTML = `<p class="text-center text-on-surface-variant py-md">جاري تحديث مواعيد اليوم...</p>`;
         tomorrowGrid.innerHTML = `<p class="text-center text-on-surface-variant py-md col-span-3">جاري تحميل مواعيد الغد...</p>`;
 
@@ -345,7 +424,6 @@
             container.innerHTML = "";
             tomorrowGrid.innerHTML = "";
 
-            // إعداد التواريخ للمقارنة والفرز
             const today = new Date();
             const tomorrow = new Date();
             tomorrow.setDate(today.getDate() + 1);
@@ -353,15 +431,12 @@
             const todayStr = today.toISOString().split('T')[0];
             const tomorrowStr = tomorrow.toISOString().split('T')[0];
 
-            // عرض تاريخ الغد بصيغة مقروءة في الهيدر الخاص به
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             tomorrowLabel.innerText = tomorrow.toLocaleDateString('ar-EG', options);
 
-            // تصفية مواعيد اليوم ومواعيد الغد بناءً على البيانات القادمة من n8n
             const todayAppointments = appointments.filter(item => item.Date === todayStr || !item.Date);
             const tomorrowAppointments = appointments.filter(item => item.Date === tomorrowStr);
 
-            // 1. حقن مواعيد اليوم بالتصميم الكارد الأصلي تماماً كما طلبته
             if (todayAppointments.length === 0) {
                 container.innerHTML = `<p class="text-center text-on-surface-variant py-md">لا توجد مواعيد مسجلة لليوم.</p>`;
             } else {
@@ -389,11 +464,11 @@
                 });
             }
 
-            // 2. حقن مواعيد الغد في الـ Grid المخصص بالتصميم المطلوب
             if (tomorrowAppointments.length === 0) {
                 tomorrowGrid.innerHTML = `<p class="text-center text-on-surface-variant py-md col-span-3">لا توجد مواعيد مسجلة للغد.</p>`;
             } else {
                 tomorrowAppointments.forEach(item => {
+                    // تقديم الأيقونة لتكون قبل النص داخل كارد مواعيد الغد أيضاً
                     tomorrowGrid.innerHTML += `
                         <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative">
                             <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
@@ -405,7 +480,7 @@
                                 <div class="text-left">
                                     <span class="px-md py-0.5 bg-primary/10 text-primary rounded-full text-[12px] font-bold">قادم</span>
                                     <p class="text-label-md text-on-surface mt-xs flex items-center gap-xs justify-end" dir="rtl">
-                                        ${item.Time || '00:00'} <span class="material-symbols-outlined text-[16px] opacity-70">schedule</span>
+                                        <span class="material-symbols-outlined text-[16px] opacity-70">schedule</span> ${item.Time || '00:00'}
                                     </p>
                                 </div>
                             </div>
@@ -420,19 +495,18 @@
         }
     }
 
-    // إعداد التواريخ الافتراضية وجلب المواعيد عند بدء تشغيل الصفحة فوراً
     window.onload = function() {
-        setDefaultDateTime();
+        initDateTimePickers();
         loadAppointments();
     };
 
-    // معالجة إرسال الفورم المجدول والمربوط بـ سيرفر الـ Webhook الخاص بك
     document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const submitButton = this.querySelector('button[type="submit"]');
         submitButton.disabled = true;
-        submitButton.innerText = 'جاري إرسال الطلب...';
+        // الحفاظ على الأيقونة قبل النص حتى أثناء التحميل
+        submitButton.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> جاري إرسال الطلب...';
 
         const formData = {
             name: document.getElementById('clientName').value,
@@ -457,8 +531,8 @@
             if (response.ok) {
                 alert('تم تسجيل الموعد بنجاح وجدولة التذكير!');
                 document.getElementById('appointmentForm').reset();
-                setDefaultDateTime(); // إرجاع قيم الوقت والتاريخ لليوم مجدداً بعد الريسيت
-                loadAppointments();   // إعادة جلب القائمة تلقائياً لعرض الموعد الجديد فوراً
+                initDateTimePickers();
+                loadAppointments();
             } else {
                 alert('حدث خطأ أثناء تسجيل الموعد، يرجى المحاولة لاحقاً.');
             }
@@ -467,7 +541,7 @@
             alert('فشل الاتصال بنظام الاتمتة المطور.');
         } finally {
             submitButton.disabled = false;
-            submitButton.innerHTML = 'تأكيد تسجيل الموعد <span class="material-symbols-outlined">person_add</span>';
+            submitButton.innerHTML = '<span class="material-symbols-outlined">person_add</span> تأكيد تسجيل الموعد';
         }
     });
 </script>
