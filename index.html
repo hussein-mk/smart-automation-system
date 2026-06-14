@@ -1,23 +1,19 @@
 <!DOCTYPE html><html class="dark" dir="rtl" lang="ar" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>عدل القانونية</title>
+<title>نظام عدل القانوني - لوحة التحكم</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Noto+Kufi+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- إضافة مكتبة Flatpickr لتحسين اختيار التاريخ بشكل احترافي ومتناسق مع الثيم الداكن -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
-
 <style>
         body {
             font-family: 'Noto Kufi Arabic', 'Be Vietnam Pro', sans-serif;
             background-color: #0b1326;
             color: #dae2fd;
             margin: 0;
-            overflow-x: hidden;
+            overflow: hidden;
             text-align: right;
         }
 
@@ -32,10 +28,51 @@
             box-shadow: 0 0 20px rgba(137, 206, 255, 0.1);
         }
 
-        .hero-glow {
-            background: radial-gradient(circle at 50% 50%, rgba(14, 165, 239, 0.15) 0%, transparent 70%);
+        select#appointmentTime {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23dae2fd' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 1rem center;
+            padding-left: 2.5rem;
+            padding-right: 1rem;
+            background-color: rgba(45, 52, 73, 0.5);
+            color: #dae2fd;
+            min-height: 3rem;
+            line-height: 1.5rem;
         }
 
+.glow-base {
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 4px 10px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* التوهج الخاص بالنشط */
+    .glow-active {
+        box-shadow: 0 0 20px -6px var(--glow-color);
+        border: 1px solid rgba(78, 222, 163, 0.35);
+        animation: pulse-glow 4.5s infinite ease-in-out;
+    }
+
+    /* التوهج الخاص بغير النشط */
+    .glow-inactive {
+        box-shadow: 0 0 8px -4px var(--glow-color);
+        border: .1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    @keyframes pulse-glow {
+        0%, 100% {
+            box-shadow: 0 0 16px -6px var(--glow-color);
+        }
+        50% {
+            box-shadow: 0 0 30px -4px var(--glow-color);
+        }
+    }
+
+    .animate-pulse-glow {
+        animation: pulse-glow 4.5s infinite ease-in-out;
+    }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
@@ -58,27 +95,10 @@
             scroll-behavior: smooth;
         }
 
-        /* تحسين مظهر الفلات بيكر ليتناسب مع ألوان الهوية */
-        .flatpickr-calendar {
-            background: #171f33 !important;
-            border: 1px solid #2d3449 !important;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
-            font-family: 'Noto Kufi Arabic', sans-serif !important;
-        }
-        .flatpickr-day.selected, .flatpickr-day.selected:hover {
-            background: #0ea5e9 !important;
-            border-color: #0ea5e9 !important;
-            color: #001e2f !important;
-        }
-        .flatpickr-day {
-            color: #dae2fd !important;
-        }
-        .flatpickr-day:hover {
-            background: #2d3449 !important;
-        }
-        .flatpickr-months .flatpickr-month, .flatpickr-weekday {
-            color: #89ceff !important;
-            fill: #89ceff !important;
+        .sidebar-item-active {
+            background: rgba(137, 206, 255, 0.1);
+            color: #89ceff;
+            border-right: 4px solid #89ceff;
         }
     </style>
 <script id="tailwind-config">
@@ -174,112 +194,128 @@
         }
     </script>
 </head>
-<body class="bg-background text-on-surface">
-<main>
-<section class="relative min-h-[80vh] flex items-center justify-center py-xl hero-glow overflow-hidden">
-<div class="container mx-auto px-margin text-center z-10">
-<div class="flex justify-center mb-md">
-<div class="relative">
-<span class="material-symbols-outlined text-[120px] text-primary opacity-100 drop-shadow-[0_0_25px_rgba(137,206,255,0.5)] transition-all">gavel</span>
-<div class="absolute inset-0 bg-primary blur-2xl opacity-20 rounded-full"></div>
+
+<body class="bg-background text-on-surface h-screen flex">
+<!-- Fixed Right Sidebar -->
+<aside class="w-64 h-full bg-surface-container border-l border-outline-variant/30 flex flex-col z-50">
+<div class="p-lg flex flex-col items-center gap-sm w-full">
+<span class="material-symbols-outlined text-[48px] text-primary drop-shadow-[0_0_10px_rgba(137,206,255,0.3)]">gavel</span>
+<h1 class="text-headline-md font-bold text-primary text-center w-full">عدل القانونية</h1>
 </div>
-</div><h2 class="font-display-lg mb-md leading-tight text-[80px] font-bold bg-gradient-to-l from-primary to-[#c9e6ff] bg-clip-text text-transparent drop-shadow-lg">عدل القانونية</h2>
-<div class="inline-block px-md py-xs bg-primary/10 border border-primary/20 rounded-full mb-lg mt-md">
-<!-- تقديم الأيقونة لتكون قبل النص -->
-<span class="text-primary font-label-sm text-label-sm flex items-center gap-xs">
-<span class="material-symbols-outlined text-[16px]">verified</span>
-        نخبة من المستشارين القانونيين في خدمتكم
-    </span>
+<nav class="mt-xl flex-grow px-sm">
+<ul class="space-y-sm"><li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">لوحة التحكم</span>
+</a>
+</li>
+<li class="">
+<a class="sidebar-item-active flex items-center gap-md px-md py-sm rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-md">إدارة المواعيد</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">إدارة العملاء</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-md">إدارة الجلسات</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest/50 hover:text-on-surface rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">الإعدادات</span>
+</a>
+</li>
+</ul>
+</nav>
+<div class="p-lg border-t border-outline-variant/20">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]">person</span>
 </div>
-<p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto mb-xl">
-                نقدم خدمات قانونية شاملة تجمع بين الخبرة العميقة والابتكار لضمان حماية مصالحكم وتحقيق تطلعاتكم في البيئة التنظيمية المعاصرة.
-            </p>
-<div class="flex flex-col sm:flex-row gap-md justify-center">
-<!-- تقديم الأيقونة لتكون قبل النص -->
-<a class="bg-primary text-on-primary px-xl py-md rounded-lg font-headline-sm text-headline-sm hover:scale-105 transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20" href="#appointments-mgmt">
-<span class="material-symbols-outlined">event_available</span>
-                    احجز استشارة قانونية
-                </a>
+<div>
+<p class="text-label-md font-bold">مدير النظام</p>
 </div>
 </div>
-<div class="absolute inset-0 pointer-events-none opacity-20">
-<div class="absolute top-1/4 right-10 w-64 h-64 border border-primary/30 rounded-full blur-3xl"></div>
-<div class="absolute bottom-1/4 left-10 w-96 h-96 border border-secondary/30 rounded-full blur-3xl"></div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow h-full overflow-y-auto bg-background">
+<!-- Header -->
+<header class="sticky top-0 z-40 bg-background/80 backdrop-blur-md border-b border-outline-variant/30 px-xl py-md flex items-center justify-between">
+<div><h1 class="text-headline-lg font-bold text-primary mb-xs">إدارة المواعيد</h1>
+<h2 class="text-label-md font-bold text-on-surface-variant opacity-70">الأربعاء، 27 نوفمبر 2024</h2>
+</div>
+<div class="flex items-center gap-lg"><div class="relative">
+<input class="bg-surface-container-highest/50 border-outline-variant/30 text-on-surface px-xl py-xs w-64 focus:ring-1 focus:ring-primary outline-none text-sm pr-10 rounded-lg" placeholder="بحث في النظام..." type="text">
+<span class="material-symbols-outlined absolute right-3 top-1.5 text-on-surface-variant text-[20px]">search</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="relative w-10 h-10 hover:bg-surface-container-highest rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-error rounded-full border border-background"></span>
+</button>
+<button class="w-10 h-10 hover:bg-surface-container-highest rounded-full transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">dark_mode</span>
+</button>
+</div></div>
+</header>
+<div class="container mx-auto p-xl space-y-xl">
+<!-- Statistics Cards Section -->
+<section>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="glass-card rounded-xl flex items-center gap-md p-xl relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-100"></div><div class="w-14 h-14 bg-secondary/20 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-secondary/10"><span class="material-symbols-outlined text-secondary text-[32px]">check_circle</span></div><div class="space-y-xs"><p class="text-label-md font-bold text-on-surface-variant">المواعيد النشطة</p><h4 class="text-headline-lg font-bold text-on-surface leading-none mt-xs">24</h4></div></div>
+<div class="glass-card rounded-xl flex items-center gap-md p-xl relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div><div class="w-14 h-14 bg-primary/20 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-primary/10"><span class="material-symbols-outlined text-primary text-[32px]">event</span></div><div class="space-y-xs"><p class="text-label-md font-bold text-on-surface-variant">المواعيد القادمة</p><h4 class="text-headline-lg font-bold text-on-surface leading-none mt-xs">86</h4></div></div>
+<div class="glass-card rounded-xl flex items-center gap-md p-xl relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-tertiary to-transparent opacity-100"></div><div class="w-14 h-14 bg-tertiary/20 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-tertiary/10"><span class="material-symbols-outlined text-tertiary text-[32px]">done_all</span></div><div class="space-y-xs"><p class="text-label-md font-bold text-on-surface-variant">المواعيد المكتملة</p><h4 class="text-headline-lg font-bold text-on-surface leading-none mt-xs">1,284</h4></div></div>
+<div class="glass-card rounded-xl flex items-center gap-md p-xl relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-error to-transparent opacity-100"></div><div class="w-14 h-14 bg-error-container/20 rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-error/10"><span class="material-symbols-outlined text-error text-[32px]">cancel</span></div><div class="space-y-xs"><p class="text-label-md font-bold text-on-surface-variant">المواعيد الملغاة</p><h4 class="text-headline-lg font-bold text-on-surface leading-none mt-xs">12</h4></div></div>
 </div>
 </section>
-<section class="bg-surface py-sm">
-<div class="container mx-auto px-margin">
-<div class="text-center mb-xl">
-<h3 class="font-headline-lg text-headline-lg text-on-surface flex items-center justify-center gap-sm">
-    الإحصائيات العامة
-  </h3>
-<div class="h-[2px] w-24 bg-primary/30 mx-auto mt-md rounded-full"></div>
-</div><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-<div class="glass-card rounded-xl flex items-center gap-md p-xl" data-stitch-orig-opacity="1" style="transform: translateY(0px); opacity: 1;"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div><div class="w-14 h-14 bg-primary/20 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-primary text-[32px]">balance</span>
-</div>
-<div class="space-y-xs">
-<p class="text-body-md text-on-surface-variant">إجمالي القضايا</p>
-<h4 class="text-[48px] font-bold text-on-surface leading-none">1,284</h4>
-</div></div>
-<div class="glass-card rounded-xl flex items-center gap-md p-xl" data-stitch-orig-opacity="1" style="transform: translateY(0px); opacity: 1;"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-100"></div><div class="w-14 h-14 bg-secondary/20 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-secondary text-[32px]">groups</span>
-</div>
-<div class="space-y-xs">
-<p class="text-body-md text-on-surface-variant">الموكلون النشطون</p>
-<h4 class="text-[48px] font-bold text-on-surface leading-none">850</h4>
-</div></div>
-<div class="glass-card rounded-xl flex items-center gap-md p-xl" data-stitch-orig-opacity="1" style="transform: translateY(0px); opacity: 1;"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-tertiary to-transparent opacity-100"></div><div class="w-14 h-14 bg-tertiary/20 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-tertiary text-[32px]">description</span>
-</div>
-<div class="space-y-xs">
-<p class="text-body-md text-on-surface-variant">المهام القانونية</p>
-<h4 class="text-[48px] font-bold text-on-surface leading-none">320</h4>
-</div></div>
-<div class="glass-card rounded-xl flex items-center gap-md p-xl" data-stitch-orig-opacity="1" style="transform: translateY(0px); opacity: 1;"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-error to-transparent opacity-100"></div><div class="w-14 h-14 bg-error-container/20 rounded-lg flex items-center justify-center">
-<span class="material-symbols-outlined text-error text-[32px]">notification_important</span>
-</div>
-<div class="space-y-xs">
-<p class="text-body-md text-on-surface-variant">مواعيد جلسات قادمة</p>
-<h4 class="text-[48px] font-bold text-on-surface leading-none">12</h4>
-</div></div>
-</div>
-</div>
-</section>
-<section class="py-xl bg-surface-container-low" id="appointments-mgmt">
-<div class="container mx-auto px-margin">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Dashboard Actions -->
+<section id="appointments-mgmt">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter"><!-- Register New Appointment Form (Now First in DOM, Right side in RTL) -->
 <div class="lg:col-span-5">
-<div class="glass-card rounded-2xl p-xl h-full border-primary/20 relative" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
+<div class="glass-card rounded-2xl p-xl h-full border-primary/20 relative" style="opacity: 1; transform: translateY(0px);">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="flex items-center justify-between mb-md">
-<!-- تقديم الأيقونة لتكون قبل النص -->
 <h3 class="font-headline-md text-on-surface flex items-center gap-sm">
 <span class="material-symbols-outlined text-primary">add_circle</span>
-              تسجيل موعد جديد
-            </h3>
+                                تسجيل موعد جديد
+                            </h3>
 </div>
-<p class="text-label-sm text-on-surface-variant mb-lg">أدخل تفاصيل الموكل لتحديد موعد استشارة جديد في النظام.</p>
+<p class="text-label-sm text-on-surface-variant mb-lg">أدخل تفاصيل الموكل لتحديد موعد استشارة جديد.</p>
 <form id="appointmentForm" class="space-y-md">
 <div class="flex flex-col gap-xs">
 <label class="text-label-sm text-on-surface-variant">اسم الموكل</label>
-<input id="clientName" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" placeholder="مثال: أحمد محمد" type="text">
+<div class="relative">
+<input id="clientName" required class="w-full bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm pr-10 focus:ring-2 focus:ring-primary outline-none" placeholder="مثال: أحمد محمد" type="text">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">person</span>
+</div>
 </div>
 <div class="flex flex-col gap-xs">
 <label class="text-label-sm text-on-surface-variant">رقم الجوال</label>
-<input id="clientPhone" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="05XXXXXXXX" style="text-align: right;" type="tel">
+<div class="relative">
+<input id="clientPhone" required class="w-full bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm pr-10 focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="05XXXXXXXX" style="text-align: right;" type="tel">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">call</span>
 </div>
-<div class="flex flex-col gap-xs">
+</div><div class="flex flex-col gap-xs">
 <label class="text-label-sm text-on-surface-variant">البريد الإلكتروني</label>
-<input id="clientEmail" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="example@prosys.com" style="text-align: right;" type="email">
+<div class="relative">
+<input id="clientEmail" required class="w-full bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm pr-10 focus:ring-2 focus:ring-primary outline-none" dir="ltr" placeholder="example@mail.com" style="text-align: right;" type="email">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">mail</span>
 </div>
-<div class="flex flex-col gap-xs">
-    <label class="text-label-sm text-on-surface-variant">موضوع الجلسة</label>
-    <input
-        id="sessionSubject"
-        required
-        class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm focus:ring-2 focus:ring-primary outline-none"
-        placeholder="مثال: استشارة تجارية، نزاع عمالي، صياغة عقد"
-        type="text">
+</div><div class="flex flex-col gap-xs">
+<label class="text-label-sm text-on-surface-variant">نوع القضية</label>
+<div class="relative">
+<input id="sessionSubject" required class="w-full bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm pr-10 focus:ring-2 focus:ring-primary outline-none" placeholder="مثال: استشارة تجارية" type="text">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">category</span>
+</div>
 </div>
 <div class="grid grid-cols-2 gap-md">
 <div class="flex flex-col gap-xs">
@@ -288,58 +324,63 @@
 </div>
 <div class="flex flex-col gap-xs">
 <label class="text-label-sm text-on-surface-variant">وقت الموعد</label>
-<select id="appointmentTime" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center focus:ring-2 focus:ring-primary outline-none cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2389ceff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px_12px] bg-[position:left_12px_center] bg-no-repeat pl-xl">
+<select id="appointmentTime" required class="bg-surface-container-highest/50 border-outline-variant text-on-surface rounded-lg px-md py-sm text-center focus:ring-2 focus:ring-primary outline-none cursor-pointer">
 </select>
 </div>
 </div>
-<!-- تم تحديث هذا الزر ليطابق تماماً زر احجز استشارة وتقديم الأيقونة قبل النص -->
-<button class="w-full bg-primary text-on-primary px-xl py-md rounded-lg font-headline-sm text-headline-sm hover:scale-105 transition-all flex items-center justify-center gap-base shadow-lg shadow-primary/20 cursor-pointer" type="submit">
-              <span class="material-symbols-outlined">person_add</span>
-              تأكيد تسجيل الموعد
-</button>
+<button class="w-full bg-primary text-on-primary font-bold py-md rounded-lg flex justify-center items-center gap-base hover:brightness-110 transition-all shadow-lg shadow-primary/20 mt-lg" type="submit"><span class="material-symbols-outlined">person_add</span>
+تأكيد تسجيل الموعد</button>
 </form>
 </div>
 </div>
 <div class="lg:col-span-7">
-<div class="glass-card rounded-2xl p-xl h-full" style="opacity: 1; transform: translateY(0px);"><div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
+<div class="glass-card rounded-2xl p-xl h-full relative" style="opacity: 1; transform: translateY(0px);">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="flex items-center justify-between mb-xl">
-<!-- تقديم الأيقونة لتكون قبل النص -->
-<h3 class="font-headline-md text-on-surface flex items-center gap-sm">
-              <span class="material-symbols-outlined text-secondary">list_alt</span>
-              مواعيد اليوم
-</h3>
+<h3 class="font-headline-md text-on-surface flex items-center gap-sm"><span class="material-symbols-outlined text-secondary">list_alt</span>
+                                مواعيد اليوم</h3>
 <div class="flex items-center gap-md">
-<button onclick="loadAppointments()" class="w-10 h-10 bg-surface-container-highest rounded flex items-center justify-center hover:bg-primary/20 transition-all cursor-pointer" title="تحديث المواعيد">
-<span class="material-symbols-outlined text-on-surface-variant hover:text-primary">sync</span>
-</button>
-</div></div>
-<div id="appointmentsListContainer" class="space-y-gutter">
+<button onclick="loadAppointments()" class="w-10 h-10 bg-surface-container-highest/50 hover:bg-surface-bright rounded-lg flex items-center justify-center transition-colors border border-outline-variant/30"><span class="material-symbols-outlined text-primary text-[20px]">sync</span></button>
 </div>
 </div>
-</div>
-</div>
-<div class="mt-xl glass-card rounded-2xl p-xl border-outline-variant/30" style="opacity: 1; transform: translateY(0px);">
-<div class="flex items-center justify-between mb-md">
-<!-- تقديم الأيقونة لتكون قبل النص -->
-<h3 class="font-headline-md text-on-surface flex items-center gap-sm">
-      <span class="material-symbols-outlined text-primary">calendar_month</span>
-      ملخص مواعيد الغد
-</h3>
-<p id="tomorrowDateLabel" class="text-label-sm text-on-surface-variant">-- نوفمبر 2024</p></div>
-<div class="h-[1px] bg-outline-variant/30 mb-xl"></div>
-<div id="tomorrowAppointmentsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div id="appointmentsListContainer" class="space-y-gutter"></div>
 </div>
 </div>
 </div>
 </section>
-</main>
-<footer class="py-lg mt-xl border-t border-outline-variant/30">
-<div class="container mx-auto px-margin text-center">
-<p class="text-label-sm text-on-surface-variant opacity-70">
-      © 2024 عدل القانونية. جميع الحقوق محفوظة.
-    </p>
+<!-- Bottom: Tomorrow's Summary -->
+<section class="glass-card rounded-2xl p-xl border-outline-variant/30 relative opacity-100" style="opacity: 1; transform: translateY(0px);">
+<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
+<div class="flex flex-col gap-sm mb-md">
+    <div class="flex items-center justify-between w-full">
+        <h3 class="font-headline-md text-on-surface flex items-center gap-sm"><span class="material-symbols-outlined text-primary">calendar_month</span>المواعيد القادمة</h3>
+        <div class="flex items-center gap-sm">
+            <button id="refreshUpcomingBtn" type="button" class="w-10 h-10 bg-surface-container-highest/50 hover:bg-surface-bright rounded-lg flex items-center justify-center transition-colors border border-outline-variant/30"><span class="material-symbols-outlined text-primary text-[20px]">sync</span></button>
+            <div class="relative">
+                <button id="filterUpcomingBtn" type="button" class="w-10 h-10 bg-surface-container-highest/50 hover:bg-surface-bright rounded-lg flex items-center justify-center transition-colors border border-outline-variant/30"><span class="material-symbols-outlined text-primary text-[20px]">filter_list</span></button>
+                <input id="upcomingDateFilter" type="text" readonly class="absolute inset-0 opacity-0 cursor-pointer" />
+            </div>
+        </div>
+    </div>
 </div>
+<div class="h-[1px] bg-outline-variant/30 mb-xl"></div>
+<div id="upcomingAppointmentsContainer" class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+    <div class="col-span-full flex flex-col items-center justify-center py-xl text-center text-on-surface-variant gap-3 min-h-[16rem]">
+        <span class="material-symbols-outlined text-primary text-[44px] animate-spin">sync</span>
+        <p class="text-lg font-semibold">جاري تحميل المواعيد القادمة...</p>
+    </div>
+</div>
+</section>
+<!-- Footer inside Content area -->
+<footer class="py-lg mt-xl border-t border-outline-variant/30 text-center">
+<p class="text-label-sm text-on-surface-variant opacity-70">
+                © 2024 عدل القانونية. جميع الحقوق محفوظة لنظام الإدارة الرقمية.
+            </p>
 </footer>
+</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
 
 <script>
     let loadedAppointments = [];
@@ -440,6 +481,90 @@
         }
     }
 
+    function getTomorrowDateString() {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return tomorrow.toISOString().split('T')[0];
+    }
+
+    function updateUpcomingDateLabel(dateStr) {
+        const label = document.getElementById('upcomingDateLabel');
+        if (!label) return;
+        const date = new Date(dateStr);
+        const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+        const formattedDate = new Intl.DateTimeFormat('ar-EG', options).format(date);
+        label.textContent = `عرض المواعيد ليوم ${formattedDate}`;
+    }
+
+    function updateUpcomingAppointments(dateStr = '') {
+        const container = document.getElementById('upcomingAppointmentsContainer');
+        if (!container) return;
+
+        const selectedDate = dateStr || document.getElementById('upcomingDateFilter').value || getTomorrowDateString();
+        document.getElementById('upcomingDateFilter').value = selectedDate;
+        updateUpcomingDateLabel(selectedDate);
+
+        const filteredAppointments = loadedAppointments
+            .filter(item => item.Date === selectedDate)
+            .sort((a, b) => (a.Time || '').localeCompare(b.Time || ''));
+
+        if (filteredAppointments.length === 0) {
+            container.innerHTML = `
+                <div class="col-span-full flex flex-col items-center justify-center py-md text-center text-on-surface-variant gap-3 min-h-[14rem]">
+                    <span class="material-symbols-outlined text-primary text-[44px]">event_busy</span>
+                    <span class="text-lg font-semibold">لا توجد مواعيد مسجلة قادمة.</span>
+                </div>`;
+            return;
+        }
+
+        container.innerHTML = filteredAppointments.slice(0, 3).map(item => {
+            const appointmentName = item.Name || item.name || 'موكل';
+            const appointmentSubject = item.Subject || item.subject || '';
+            const appointmentTime = formatTimeWithPeriod(item.Time || '');
+
+            return `
+                <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative" style="opacity: 1; transform: translateY(0px);">
+                    <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
+                    <div class="flex flex-col gap-xs text-right">
+                        <h4 class="font-headline-sm text-on-surface text-[18px] font-bold">${appointmentName}</h4>
+                        <p class="text-label-sm text-on-surface-variant opacity-80">${appointmentSubject}</p>
+                    </div>
+                    <div class="flex flex-col items-end gap-sm text-left">
+                        <span class="px-md py-0.5 bg-primary/10 text-primary rounded-full text-[12px] font-bold border border-primary/20">قادم</span>
+                        <p class="text-label-md text-on-surface flex items-center gap-xs justify-end" dir="rtl"><span class="material-symbols-outlined text-[18px] text-primary">schedule</span> ${appointmentTime}</p>
+                    </div>
+                </div>`;
+        }).join('');
+
+        initAnimations();
+    }
+
+    function initUpcomingDatePicker() {
+        flatpickr('#upcomingDateFilter', {
+            locale: 'ar',
+            dateFormat: 'Y-m-d',
+            defaultDate: getTomorrowDateString(),
+            disableMobile: 'true',
+            onChange: function(selectedDates, dateStr) {
+                if (dateStr) {
+                    updateUpcomingAppointments(dateStr);
+                }
+            }
+        });
+
+        const filterButton = document.getElementById('filterUpcomingBtn');
+        filterButton?.addEventListener('click', function() {
+            const picker = document.querySelector('#upcomingDateFilter')._flatpickr;
+            if (picker) picker.open();
+        });
+
+        const refreshButton = document.getElementById('refreshUpcomingBtn');
+        refreshButton?.addEventListener('click', function() {
+            const selectedDate = document.getElementById('upcomingDateFilter').value || getTomorrowDateString();
+            updateUpcomingAppointments(selectedDate);
+        });
+    }
+
     function initDateTimePickers() {
         const now = new Date();
         const defaultDate = now.toISOString().split('T')[0];
@@ -459,11 +584,12 @@
 
     async function loadAppointments() {
         const container = document.getElementById("appointmentsListContainer");
-        const tomorrowGrid = document.getElementById("tomorrowAppointmentsGrid");
-        const tomorrowLabel = document.getElementById("tomorrowDateLabel");
 
-        container.innerHTML = `<p class="text-center text-on-surface-variant py-md">جاري تحديث مواعيد اليوم...</p>`;
-        tomorrowGrid.innerHTML = `<p class="text-center text-on-surface-variant py-md col-span-3">جاري تحديث مواعيد الغد...</p>`;
+        container.innerHTML = `
+            <div class="flex flex-col items-center justify-center py-md text-center text-on-surface-variant gap-2">
+                <span class="material-symbols-outlined text-primary text-[32px] animate-spin">sync</span>
+                <span>جاري تحميل مواعيد اليوم...</span>
+            </div>`;
         
         try {
             const response = await fetch("https://hussen98.app.n8n.cloud/webhook/4f5961ef-c19b-4135-96e5-7fcfe03ae22e");
@@ -471,62 +597,64 @@
             loadedAppointments = data.appointments || [];
 
             populateTimeDropdown(); 
+            updateUpcomingAppointments();
 
             container.innerHTML = "";
-            tomorrowGrid.innerHTML = "";
 
             const today = new Date();
-            const tomorrow = new Date();
-            tomorrow.setDate(today.getDate() + 1);
             const todayStr = today.toISOString().split('T')[0];
-            const tomorrowStr = tomorrow.toISOString().split('T')[0];
-
-            tomorrowLabel.innerText = tomorrow.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
 
             const todayAppointments = loadedAppointments.filter(item => item.Date === todayStr || !item.Date);
-            const tomorrowAppointments = loadedAppointments.filter(item => item.Date === tomorrowStr);
 
             if (todayAppointments.length === 0) {
-                container.innerHTML = `<p class="text-center text-on-surface-variant py-md">لا توجد مواعيد مسجلة لليوم.</p>`;
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-md text-center text-on-surface-variant gap-3 min-h-[14rem]">
+                        <span class="material-symbols-outlined text-primary text-[44px]">event_busy</span>
+                        <span class="text-lg font-semibold">لا توجد مواعيد مسجلة لليوم.</span>
+                    </div>`;
             } else {
-                todayAppointments.forEach((item, index) => {
-                    const statusBadge = index === 0 ? "bg-secondary/20 text-secondary" : "bg-primary/20 text-primary";
-                    container.innerHTML += `
-                        <div class="p-lg bg-surface-container-highest/30 rounded-xl border border-outline-variant/30 flex items-center justify-between relative">
-                            <div class="flex items-center gap-lg">
-                                <div>
-                                    <h4 class="font-bold">${item.Name || 'مستشار قانوني'}</h4>
-                                    <p class="text-label-sm text-primary font-semibold">${item.Subject || 'استشارة قانونية'}</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <span class="px-md py-0.5 ${statusBadge} rounded-full text-[10px] font-bold">${index === 0 ? "نشط" : "قادم"}</span>
-                                <p class="text-label-md mt-sm"><span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${formatTimeWithPeriod(item.Time)}</p>
-                            </div>
-                        </div>`;
-                });
+todayAppointments.forEach((item, index) => {
+    const isFirst = index === 0;
+    
+    // الألوان: الأخضر للنشط (بشفافية 0.4)، الأزرق لغير النشط (بشفافية 0.1)
+    const glowColor = isFirst ? "#4edea3" : "#89ceff";
+    const glowClass = isFirst ? "glow-active animate-pulse-glow" : "glow-inactive";
+    
+    const statusBadge = isFirst ? "bg-secondary/20 text-secondary" : "bg-primary/20 text-primary";
+    const borderSide = isFirst ? "border-r-secondary" : "border-r-primary";
+
+    container.innerHTML += `
+        <div class="glass-card px-lg py-md rounded-2xl border-r-4 ${borderSide} ${glowClass} flex items-center justify-between relative transition-all duration-500 hover:scale-[1.01]" 
+             style="--glow-color: ${glowColor};">
+            
+            <div class="flex items-center gap-md">
+                <div>
+                    <h4 class="font-bold text-base leading-tight">${item.Name || ''}</h4>
+                    <p class="text-sm text-primary font-semibold mt-1">${item.Subject || ''}</p>
+                </div>
+            </div>
+            
+            <div class="text-right">
+                <span class="px-sm py-0.5 ${statusBadge} rounded-full text-[11px] font-bold">${isFirst ? "نشط" : "قادم"}</span>
+                <p class="text-sm mt-2 text-on-surface-variant flex items-center justify-end gap-2">
+                    <span class="material-symbols-outlined text-[16px] align-middle">schedule</span>
+                    <span>${formatTimeWithPeriod(item.Time)}</span>
+                </p>
+            </div>
+        </div>`;
+});
             }
 
-            if (tomorrowAppointments.length === 0) {
-                tomorrowGrid.innerHTML = `<p class="text-center text-on-surface-variant py-md col-span-3">لا توجد مواعيد مسجلة للغد.</p>`;
-            } else {
-                tomorrowAppointments.forEach(item => {
-                    tomorrowGrid.innerHTML += `
-                        <div class="glass-card p-lg rounded-xl border border-outline-variant/30 flex justify-between items-center hover:bg-surface-container-highest/30 transition-all relative">
-                            <div class="text-right">
-                                <h4 class="font-bold">${item.Name}</h4>
-                                <p class="text-label-sm text-primary font-semibold">${item.Subject || 'استشارة قانونية'}</p>
-                            </div>
-                            <div class="text-right">
-                                <span class="px-md py-0.5 bg-primary/20 text-primary rounded-full text-[10px] font-bold">قادم</span>
-                                <p class="text-label-md mt-sm"><span class="material-symbols-outlined text-[14px] align-middle">schedule</span> ${formatTimeWithPeriod(item.Time)}</p>
-                            </div>
-                        </div>`;
-                });
-            }
             initAnimations();
         } catch (error) {
             console.error("Error loading appointments:", error);
+            container.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-md text-center text-on-surface-variant gap-3 min-h-[14rem]">
+                    <span class="material-symbols-outlined text-primary text-[44px]">event_busy</span>
+                    <span class="text-lg font-semibold">لا توجد مواعيد مسجلة لهذا اليوم.</span>
+                </div>`;
+            loadedAppointments = [];
+            updateUpcomingAppointments();
         }
     }
 
@@ -574,7 +702,11 @@
         }
     });
 
-    window.onload = () => { initDateTimePickers(); loadAppointments(); };
+    window.onload = () => { initDateTimePickers(); initUpcomingDatePicker(); loadAppointments(); };
 </script>
+
+
 </body></html>
 
+
+العثور على مواعيد اليوم أو حدث خطأ أثناء التحميل.
