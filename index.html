@@ -337,8 +337,12 @@
 <div class="glass-card rounded-2xl p-xl h-full relative" style="opacity: 1; transform: translateY(0px);">
 <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="flex items-center justify-between mb-xl">
-<h3 class="font-headline-md text-on-surface flex items-center gap-sm"><span class="material-symbols-outlined text-secondary">list_alt</span>
-                                مواعيد اليوم</h3>
+<h3 class="font-headline-md text-on-surface flex items-center gap-sm">
+    <span class="flex items-center justify-center w-12 h-12 rounded-xl border border-outline-variant/40 bg-surface-container-highest/60">
+        <span class="material-symbols-outlined text-secondary text-[26px]">list_alt</span>
+    </span>
+    مواعيد اليوم
+</h3>
 <div class="flex items-center gap-md">
 <button onclick="loadAppointments()" class="w-10 h-10 bg-surface-container-highest/50 hover:bg-surface-bright rounded-lg flex items-center justify-center transition-colors border border-outline-variant/30"><span class="material-symbols-outlined text-primary text-[20px]">sync</span></button>
 </div>
@@ -353,7 +357,12 @@
 <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-100"></div>
 <div class="flex flex-col gap-sm mb-md">
     <div class="flex items-center justify-between w-full">
-        <h3 class="font-headline-md text-on-surface flex items-center gap-sm"><span class="material-symbols-outlined text-primary">calendar_month</span>المواعيد القادمة</h3>
+        <h3 class="font-headline-md text-on-surface flex items-center gap-sm">
+            <span class="flex items-center justify-center w-12 h-12 rounded-xl border border-outline-variant/40 bg-surface-container-highest/60">
+                <span class="material-symbols-outlined text-primary text-[26px]">calendar_month</span>
+            </span>
+            المواعيد القادمة
+        </h3>
         <div class="flex items-center gap-sm">
             <button id="refreshUpcomingBtn" type="button" class="w-10 h-10 bg-surface-container-highest/50 hover:bg-surface-bright rounded-lg flex items-center justify-center transition-colors border border-outline-variant/30"><span class="material-symbols-outlined text-primary text-[20px]">sync</span></button>
             <div class="relative">
@@ -709,4 +718,3 @@ todayAppointments.forEach((item, index) => {
 </body></html>
 
 
-العثور على مواعيد اليوم أو حدث خطأ أثناء التحميل.
